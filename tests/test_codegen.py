@@ -196,9 +196,9 @@ def test_generate_tools_file():
         output_file = output_dir / "generated_test_tools.py"
         assert output_file.exists()
 
-        # Check the content
+        # Check the content - now includes service prefix
         content = output_file.read_text()
-        assert "def list_items" in content
+        assert "def test_list_items" in content
         assert "limit: int | None = None" in content
-        assert "async def list_items" in content
+        assert "async def test_list_items" in content
         assert "@server.call_tool()" in content

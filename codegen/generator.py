@@ -205,9 +205,13 @@ def generate_tool_function(
     path: str,
     operation: Dict[str, Any],
     base_url: str,
+    service_prefix: str = "",
 ) -> str:
     """Generate a single tool function from an OpenAPI operation."""
     tool_name = to_snake_case(operation_id, method)
+    # Prepend service prefix if provided
+    if service_prefix:
+        tool_name = f"{service_prefix}_{tool_name}"
     summary = operation.get("summary", "")
     description = operation.get("description", summary)
 
@@ -397,7 +401,12 @@ def set_server(s: Server) -> None:
                     method_for_naming = "" if tool_name in collisions else method
 
                     tool_code = generate_tool_function(
-                        operation_id, method_for_naming, path, operation, base_url
+                        operation_id,
+                        method_for_naming,
+                        path,
+                        operation,
+                        base_url,
+                        spec_name,  # Pass the service name as prefix
                     )
                     file_content += tool_code
 

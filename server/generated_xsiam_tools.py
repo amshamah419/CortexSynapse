@@ -22,7 +22,7 @@ def set_server(s: Server) -> None:
 
 
 @server.call_tool()
-async def start_xql_query(
+async def xsiam_start_xql_query(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -84,8 +84,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for start_xql_query
-start_xql_query_schema = {
+# Schema for xsiam_start_xql_query
+xsiam_start_xql_query_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -95,7 +95,7 @@ start_xql_query_schema = {
 }
 
 @server.call_tool()
-async def get_query_results(
+async def xsiam_get_query_results(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -161,8 +161,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for get_query_results
-get_query_results_schema = {
+# Schema for xsiam_get_query_results
+xsiam_get_query_results_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -172,7 +172,7 @@ get_query_results_schema = {
 }
 
 @server.call_tool()
-async def get_quota(
+async def xsiam_get_quota(
 
 ) -> List[types.TextContent]:
     """
@@ -228,8 +228,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for get_quota
-get_quota_schema = {
+# Schema for xsiam_get_quota
+xsiam_get_quota_schema = {
     "type": "object",
     "properties": {
 
@@ -237,7 +237,7 @@ get_quota_schema = {
 }
 
 @server.call_tool()
-async def get_query_results_stream(
+async def xsiam_get_query_results_stream(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -306,8 +306,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for get_query_results_stream
-get_query_results_stream_schema = {
+# Schema for xsiam_get_query_results_stream
+xsiam_get_query_results_stream_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -318,7 +318,7 @@ get_query_results_stream_schema = {
 }
 
 @server.call_tool()
-async def get_incidents(
+async def xsiam_get_incidents(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -377,8 +377,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for get_incidents
-get_incidents_schema = {
+# Schema for xsiam_get_incidents
+xsiam_get_incidents_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -388,7 +388,7 @@ get_incidents_schema = {
 }
 
 @server.call_tool()
-async def alerts_get_alerts_v1(
+async def xsiam_alerts_get_alerts_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -447,8 +447,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for alerts_get_alerts_v1
-alerts_get_alerts_v1_schema = {
+# Schema for xsiam_alerts_get_alerts_v1
+xsiam_alerts_get_alerts_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -458,7 +458,7 @@ alerts_get_alerts_v1_schema = {
 }
 
 @server.call_tool()
-async def alerts_get_alerts_multi_events_v2(
+async def xsiam_alerts_get_alerts_multi_events_v2(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -519,8 +519,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for alerts_get_alerts_multi_events_v2
-alerts_get_alerts_multi_events_v2_schema = {
+# Schema for xsiam_alerts_get_alerts_multi_events_v2
+xsiam_alerts_get_alerts_multi_events_v2_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -530,7 +530,7 @@ alerts_get_alerts_multi_events_v2_schema = {
 }
 
 @server.call_tool()
-async def get_alerts_multi_events(
+async def xsiam_get_alerts_multi_events(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -592,8 +592,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for get_alerts_multi_events
-get_alerts_multi_events_schema = {
+# Schema for xsiam_get_alerts_multi_events
+xsiam_get_alerts_multi_events_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -603,7 +603,7 @@ get_alerts_multi_events_schema = {
 }
 
 @server.call_tool()
-async def update_incident(
+async def xsiam_update_incident(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -659,8 +659,8 @@ async def update_incident(
     ]
 
 
-# Schema for update_incident
-update_incident_schema = {
+# Schema for xsiam_update_incident
+xsiam_update_incident_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -670,7 +670,7 @@ update_incident_schema = {
 }
 
 @server.call_tool()
-async def update_alerts(
+async def xsiam_update_alerts(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -724,8 +724,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for update_alerts
-update_alerts_schema = {
+# Schema for xsiam_update_alerts
+xsiam_update_alerts_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -735,7 +735,7 @@ update_alerts_schema = {
 }
 
 @server.call_tool()
-async def insert_cef_alerts(
+async def xsiam_insert_cef_alerts(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -790,8 +790,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise Plus**
     ]
 
 
-# Schema for insert_cef_alerts
-insert_cef_alerts_schema = {
+# Schema for xsiam_insert_cef_alerts
+xsiam_insert_cef_alerts_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -801,7 +801,7 @@ insert_cef_alerts_schema = {
 }
 
 @server.call_tool()
-async def insert_parsed_alerts(
+async def xsiam_insert_parsed_alerts(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -856,8 +856,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for insert_parsed_alerts
-insert_parsed_alerts_schema = {
+# Schema for xsiam_insert_parsed_alerts
+xsiam_insert_parsed_alerts_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -867,7 +867,7 @@ insert_parsed_alerts_schema = {
 }
 
 @server.call_tool()
-async def get_alerts_pcap(
+async def xsiam_get_alerts_pcap(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -922,8 +922,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for get_alerts_pcap
-get_alerts_pcap_schema = {
+# Schema for xsiam_get_alerts_pcap
+xsiam_get_alerts_pcap_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -933,7 +933,7 @@ get_alerts_pcap_schema = {
 }
 
 @server.call_tool()
-async def create_alert(
+async def xsiam_create_alert(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -1006,8 +1006,8 @@ Required licenses: **Cortex XSIAM Enterprise** or **Cortex XSIAM Enterprise Plus
     ]
 
 
-# Schema for create_alert
-create_alert_schema = {
+# Schema for xsiam_create_alert
+xsiam_create_alert_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -1017,7 +1017,7 @@ create_alert_schema = {
 }
 
 @server.call_tool()
-async def replace_hosts(
+async def xsiam_replace_hosts(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -1073,8 +1073,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for replace_hosts
-replace_hosts_schema = {
+# Schema for xsiam_replace_hosts
+xsiam_replace_hosts_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -1084,7 +1084,7 @@ replace_hosts_schema = {
 }
 
 @server.call_tool()
-async def replace_users(
+async def xsiam_replace_users(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -1140,8 +1140,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for replace_users
-replace_users_schema = {
+# Schema for xsiam_replace_users
+xsiam_replace_users_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -1151,7 +1151,7 @@ replace_users_schema = {
 }
 
 @server.call_tool()
-async def replace_ip_addresses(
+async def xsiam_replace_ip_addresses(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -1207,8 +1207,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for replace_ip_addresses
-replace_ip_addresses_schema = {
+# Schema for xsiam_replace_ip_addresses
+xsiam_replace_ip_addresses_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -1218,7 +1218,7 @@ replace_ip_addresses_schema = {
 }
 
 @server.call_tool()
-async def replace_ad_groups(
+async def xsiam_replace_ad_groups(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -1274,8 +1274,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for replace_ad_groups
-replace_ad_groups_schema = {
+# Schema for xsiam_replace_ad_groups
+xsiam_replace_ad_groups_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -1285,7 +1285,7 @@ replace_ad_groups_schema = {
 }
 
 @server.call_tool()
-async def get_versions(
+async def xsiam_get_versions(
     authorization: str,
     x_xdr_auth_id: str,
 ) -> List[types.TextContent]:
@@ -1336,8 +1336,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for get_versions
-get_versions_schema = {
+# Schema for xsiam_get_versions
+xsiam_get_versions_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -1346,7 +1346,7 @@ get_versions_schema = {
 }
 
 @server.call_tool()
-async def get_endpoints(
+async def xsiam_get_endpoints(
     authorization: str,
     x_xdr_auth_id: str,
 ) -> List[types.TextContent]:
@@ -1397,8 +1397,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for get_endpoints
-get_endpoints_schema = {
+# Schema for xsiam_get_endpoints
+xsiam_get_endpoints_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -1407,7 +1407,7 @@ get_endpoints_schema = {
 }
 
 @server.call_tool()
-async def get_policy(
+async def xsiam_get_policy(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -1461,8 +1461,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for get_policy
-get_policy_schema = {
+# Schema for xsiam_get_policy
+xsiam_get_policy_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -1472,7 +1472,7 @@ get_policy_schema = {
 }
 
 @server.call_tool()
-async def delete(
+async def xsiam_delete(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -1533,8 +1533,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for delete
-delete_schema = {
+# Schema for xsiam_delete
+xsiam_delete_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -1544,7 +1544,7 @@ delete_schema = {
 }
 
 @server.call_tool()
-async def create(
+async def xsiam_create(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -1598,8 +1598,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for create
-create_schema = {
+# Schema for xsiam_create
+xsiam_create_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -1609,7 +1609,7 @@ create_schema = {
 }
 
 @server.call_tool()
-async def get_violations(
+async def xsiam_get_violations(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -1668,8 +1668,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for get_violations
-get_violations_schema = {
+# Schema for xsiam_get_violations
+xsiam_get_violations_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -1679,7 +1679,7 @@ get_violations_schema = {
 }
 
 @server.call_tool()
-async def get_status(
+async def xsiam_get_status(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -1733,8 +1733,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for get_status
-get_status_schema = {
+# Schema for xsiam_get_status
+xsiam_get_status_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -1744,7 +1744,7 @@ get_status_schema = {
 }
 
 @server.call_tool()
-async def get_dist_url(
+async def xsiam_get_dist_url(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -1798,8 +1798,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for get_dist_url
-get_dist_url_schema = {
+# Schema for xsiam_get_dist_url
+xsiam_get_dist_url_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -1809,7 +1809,7 @@ get_dist_url_schema = {
 }
 
 @server.call_tool()
-async def update_agent_name(
+async def xsiam_update_agent_name(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -1863,8 +1863,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for update_agent_name
-update_agent_name_schema = {
+# Schema for xsiam_update_agent_name
+xsiam_update_agent_name_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -1874,7 +1874,7 @@ update_agent_name_schema = {
 }
 
 @server.call_tool()
-async def assign(
+async def xsiam_assign(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -1928,8 +1928,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for assign
-assign_schema = {
+# Schema for xsiam_assign
+xsiam_assign_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -1939,7 +1939,7 @@ assign_schema = {
 }
 
 @server.call_tool()
-async def remove(
+async def xsiam_remove(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -1993,8 +1993,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for remove
-remove_schema = {
+# Schema for xsiam_remove
+xsiam_remove_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -2004,7 +2004,7 @@ remove_schema = {
 }
 
 @server.call_tool()
-async def restore(
+async def xsiam_restore(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -2062,8 +2062,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for restore
-restore_schema = {
+# Schema for xsiam_restore
+xsiam_restore_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -2073,7 +2073,7 @@ restore_schema = {
 }
 
 @server.call_tool()
-async def file_retrieval_details(
+async def xsiam_file_retrieval_details(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -2142,8 +2142,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for file_retrieval_details
-file_retrieval_details_schema = {
+# Schema for xsiam_file_retrieval_details
+xsiam_file_retrieval_details_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -2153,7 +2153,7 @@ file_retrieval_details_schema = {
 }
 
 @server.call_tool()
-async def allowlist(
+async def xsiam_allowlist(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -2207,8 +2207,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for allowlist
-allowlist_schema = {
+# Schema for xsiam_allowlist
+xsiam_allowlist_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -2218,7 +2218,7 @@ allowlist_schema = {
 }
 
 @server.call_tool()
-async def status(
+async def xsiam_status(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -2272,8 +2272,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for status
-status_schema = {
+# Schema for xsiam_status
+xsiam_status_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -2283,7 +2283,7 @@ status_schema = {
 }
 
 @server.call_tool()
-async def quarantine(
+async def xsiam_quarantine(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -2342,8 +2342,8 @@ When filtering by multiple fields:
     ]
 
 
-# Schema for quarantine
-quarantine_schema = {
+# Schema for xsiam_quarantine
+xsiam_quarantine_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -2353,7 +2353,7 @@ quarantine_schema = {
 }
 
 @server.call_tool()
-async def blocklist(
+async def xsiam_blocklist(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -2407,8 +2407,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for blocklist
-blocklist_schema = {
+# Schema for xsiam_blocklist
+xsiam_blocklist_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -2418,7 +2418,7 @@ blocklist_schema = {
 }
 
 @server.call_tool()
-async def unisolate(
+async def xsiam_unisolate(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -2474,8 +2474,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for unisolate
-unisolate_schema = {
+# Schema for xsiam_unisolate
+xsiam_unisolate_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -2485,7 +2485,7 @@ unisolate_schema = {
 }
 
 @server.call_tool()
-async def abort_scan(
+async def xsiam_abort_scan(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -2543,8 +2543,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for abort_scan
-abort_scan_schema = {
+# Schema for xsiam_abort_scan
+xsiam_abort_scan_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -2554,7 +2554,7 @@ abort_scan_schema = {
 }
 
 @server.call_tool()
-async def scan(
+async def xsiam_scan(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -2610,8 +2610,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for scan
-scan_schema = {
+# Schema for xsiam_scan
+xsiam_scan_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -2621,7 +2621,7 @@ scan_schema = {
 }
 
 @server.call_tool()
-async def get_action_status(
+async def xsiam_get_action_status(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -2675,8 +2675,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for get_action_status
-get_action_status_schema = {
+# Schema for xsiam_get_action_status
+xsiam_get_action_status_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -2686,7 +2686,7 @@ get_action_status_schema = {
 }
 
 @server.call_tool()
-async def run_snippet_code_script(
+async def xsiam_run_snippet_code_script(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -2740,8 +2740,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for run_snippet_code_script
-run_snippet_code_script_schema = {
+# Schema for xsiam_run_snippet_code_script
+xsiam_run_snippet_code_script_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -2751,7 +2751,7 @@ run_snippet_code_script_schema = {
 }
 
 @server.call_tool()
-async def run_script(
+async def xsiam_run_script(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -2805,8 +2805,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for run_script
-run_script_schema = {
+# Schema for xsiam_run_script
+xsiam_run_script_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -2816,7 +2816,7 @@ run_script_schema = {
 }
 
 @server.call_tool()
-async def get_script_metadata(
+async def xsiam_get_script_metadata(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -2870,8 +2870,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for get_script_metadata
-get_script_metadata_schema = {
+# Schema for xsiam_get_script_metadata
+xsiam_get_script_metadata_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -2881,7 +2881,7 @@ get_script_metadata_schema = {
 }
 
 @server.call_tool()
-async def get_script_execution_status(
+async def xsiam_get_script_execution_status(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -2935,8 +2935,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for get_script_execution_status
-get_script_execution_status_schema = {
+# Schema for xsiam_get_script_execution_status
+xsiam_get_script_execution_status_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -2946,7 +2946,7 @@ get_script_execution_status_schema = {
 }
 
 @server.call_tool()
-async def get_scripts(
+async def xsiam_get_scripts(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -3000,8 +3000,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for get_scripts
-get_scripts_schema = {
+# Schema for xsiam_get_scripts
+xsiam_get_scripts_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3011,7 +3011,7 @@ get_scripts_schema = {
 }
 
 @server.call_tool()
-async def get_script_execution_results(
+async def xsiam_get_script_execution_results(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -3065,8 +3065,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for get_script_execution_results
-get_script_execution_results_schema = {
+# Schema for xsiam_get_script_execution_results
+xsiam_get_script_execution_results_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3076,7 +3076,7 @@ get_script_execution_results_schema = {
 }
 
 @server.call_tool()
-async def get_script_execution_results_files(
+async def xsiam_get_script_execution_results_files(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -3130,8 +3130,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for get_script_execution_results_files
-get_script_execution_results_files_schema = {
+# Schema for xsiam_get_script_execution_results_files
+xsiam_get_script_execution_results_files_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3141,7 +3141,7 @@ get_script_execution_results_files_schema = {
 }
 
 @server.call_tool()
-async def get_script_code(
+async def xsiam_get_script_code(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -3195,8 +3195,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for get_script_code
-get_script_code_schema = {
+# Schema for xsiam_get_script_code
+xsiam_get_script_code_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3206,7 +3206,7 @@ get_script_code_schema = {
 }
 
 @server.call_tool()
-async def insert_csv(
+async def xsiam_insert_csv(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: str,
@@ -3265,8 +3265,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for insert_csv
-insert_csv_schema = {
+# Schema for xsiam_insert_csv
+xsiam_insert_csv_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3277,7 +3277,7 @@ insert_csv_schema = {
 }
 
 @server.call_tool()
-async def insert_jsons(
+async def xsiam_insert_jsons(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: List[Any],
@@ -3336,8 +3336,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for insert_jsons
-insert_jsons_schema = {
+# Schema for xsiam_insert_jsons
+xsiam_insert_jsons_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3348,7 +3348,7 @@ insert_jsons_schema = {
 }
 
 @server.call_tool()
-async def management_logs(
+async def xsiam_management_logs(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -3403,8 +3403,8 @@ async def management_logs(
     ]
 
 
-# Schema for management_logs
-management_logs_schema = {
+# Schema for xsiam_management_logs
+xsiam_management_logs_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3414,7 +3414,7 @@ management_logs_schema = {
 }
 
 @server.call_tool()
-async def healthcheck(
+async def xsiam_healthcheck(
     authorization: str,
     x_xdr_auth_id: str,
 ) -> List[types.TextContent]:
@@ -3465,8 +3465,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for healthcheck
-healthcheck_schema = {
+# Schema for xsiam_healthcheck
+xsiam_healthcheck_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3475,7 +3475,7 @@ healthcheck_schema = {
 }
 
 @server.call_tool()
-async def system_get_tenant_info_v1(
+async def xsiam_system_get_tenant_info_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -3529,8 +3529,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for system_get_tenant_info_v1
-system_get_tenant_info_v1_schema = {
+# Schema for xsiam_system_get_tenant_info_v1
+xsiam_system_get_tenant_info_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3540,7 +3540,7 @@ system_get_tenant_info_v1_schema = {
 }
 
 @server.call_tool()
-async def incidents_get_incident_extra_data_v1(
+async def xsiam_incidents_get_incident_extra_data_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -3599,8 +3599,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for incidents_get_incident_extra_data_v1
-incidents_get_incident_extra_data_v1_schema = {
+# Schema for xsiam_incidents_get_incident_extra_data_v1
+xsiam_incidents_get_incident_extra_data_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3610,7 +3610,7 @@ incidents_get_incident_extra_data_v1_schema = {
 }
 
 @server.call_tool()
-async def rbac_get_users_v1(
+async def xsiam_rbac_get_users_v1(
     authorization: str,
     x_xdr_auth_id: str,
 ) -> List[types.TextContent]:
@@ -3661,8 +3661,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for rbac_get_users_v1
-rbac_get_users_v1_schema = {
+# Schema for xsiam_rbac_get_users_v1
+xsiam_rbac_get_users_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3671,7 +3671,7 @@ rbac_get_users_v1_schema = {
 }
 
 @server.call_tool()
-async def rbac_get_roles_v1(
+async def xsiam_rbac_get_roles_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -3725,8 +3725,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for rbac_get_roles_v1
-rbac_get_roles_v1_schema = {
+# Schema for xsiam_rbac_get_roles_v1
+xsiam_rbac_get_roles_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3736,7 +3736,7 @@ rbac_get_roles_v1_schema = {
 }
 
 @server.call_tool()
-async def rbac_get_user_group_v1(
+async def xsiam_rbac_get_user_group_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -3790,8 +3790,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for rbac_get_user_group_v1
-rbac_get_user_group_v1_schema = {
+# Schema for xsiam_rbac_get_user_group_v1
+xsiam_rbac_get_user_group_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3801,7 +3801,7 @@ rbac_get_user_group_v1_schema = {
 }
 
 @server.call_tool()
-async def rbac_set_user_role_v1(
+async def xsiam_rbac_set_user_role_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -3855,8 +3855,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for rbac_set_user_role_v1
-rbac_set_user_role_v1_schema = {
+# Schema for xsiam_rbac_set_user_role_v1
+xsiam_rbac_set_user_role_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3866,7 +3866,7 @@ rbac_set_user_role_v1_schema = {
 }
 
 @server.call_tool()
-async def endpoints_get_endpoint_v1(
+async def xsiam_endpoints_get_endpoint_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -3923,8 +3923,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for endpoints_get_endpoint_v1
-endpoints_get_endpoint_v1_schema = {
+# Schema for xsiam_endpoints_get_endpoint_v1
+xsiam_endpoints_get_endpoint_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3934,7 +3934,7 @@ endpoints_get_endpoint_v1_schema = {
 }
 
 @server.call_tool()
-async def get_risk_score_v1(
+async def xsiam_get_risk_score_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -3988,8 +3988,8 @@ Required license: **Cortex XSIAM Premium** or **Identity Threat Module**
     ]
 
 
-# Schema for get_risk_score_v1
-get_risk_score_v1_schema = {
+# Schema for xsiam_get_risk_score_v1
+xsiam_get_risk_score_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3999,7 +3999,7 @@ get_risk_score_v1_schema = {
 }
 
 @server.call_tool()
-async def get_risky_users_v1(
+async def xsiam_get_risky_users_v1(
     authorization: str,
     x_xdr_auth_id: str,
 ) -> List[types.TextContent]:
@@ -4050,8 +4050,8 @@ Required license: **Cortex XSIAM Premium** or **Identity Threat Module**
     ]
 
 
-# Schema for get_risky_users_v1
-get_risky_users_v1_schema = {
+# Schema for xsiam_get_risky_users_v1
+xsiam_get_risky_users_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4060,7 +4060,7 @@ get_risky_users_v1_schema = {
 }
 
 @server.call_tool()
-async def get_risky_hosts_v1(
+async def xsiam_get_risky_hosts_v1(
     authorization: str,
     x_xdr_auth_id: str,
 ) -> List[types.TextContent]:
@@ -4111,8 +4111,8 @@ Required license: **Cortex XSIAM Premium** or **Identity Threat Module**
     ]
 
 
-# Schema for get_risky_hosts_v1
-get_risky_hosts_v1_schema = {
+# Schema for xsiam_get_risky_hosts_v1
+xsiam_get_risky_hosts_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4121,7 +4121,7 @@ get_risky_hosts_v1_schema = {
 }
 
 @server.call_tool()
-async def endpoints_file_retrieval_v1(
+async def xsiam_endpoints_file_retrieval_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -4177,8 +4177,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for endpoints_file_retrieval_v1
-endpoints_file_retrieval_v1_schema = {
+# Schema for xsiam_endpoints_file_retrieval_v1
+xsiam_endpoints_file_retrieval_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4188,7 +4188,7 @@ endpoints_file_retrieval_v1_schema = {
 }
 
 @server.call_tool()
-async def endpoints_isolate_v1(
+async def xsiam_endpoints_isolate_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -4242,8 +4242,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for endpoints_isolate_v1
-endpoints_isolate_v1_schema = {
+# Schema for xsiam_endpoints_isolate_v1
+xsiam_endpoints_isolate_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4253,7 +4253,7 @@ endpoints_isolate_v1_schema = {
 }
 
 @server.call_tool()
-async def audits_agents_reports_v1(
+async def xsiam_audits_agents_reports_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -4310,8 +4310,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for audits_agents_reports_v1
-audits_agents_reports_v1_schema = {
+# Schema for xsiam_audits_agents_reports_v1
+xsiam_audits_agents_reports_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4321,7 +4321,7 @@ audits_agents_reports_v1_schema = {
 }
 
 @server.call_tool()
-async def assets_get_external_service_v1(
+async def xsiam_assets_get_external_service_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -4375,8 +4375,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise**, **Cor
     ]
 
 
-# Schema for assets_get_external_service_v1
-assets_get_external_service_v1_schema = {
+# Schema for xsiam_assets_get_external_service_v1
+xsiam_assets_get_external_service_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4386,7 +4386,7 @@ assets_get_external_service_v1_schema = {
 }
 
 @server.call_tool()
-async def assets_get_external_services_v1(
+async def xsiam_assets_get_external_services_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -4442,8 +4442,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise**, **Cor
     ]
 
 
-# Schema for assets_get_external_services_v1
-assets_get_external_services_v1_schema = {
+# Schema for xsiam_assets_get_external_services_v1
+xsiam_assets_get_external_services_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "api-key"},
@@ -4453,7 +4453,7 @@ assets_get_external_services_v1_schema = {
 }
 
 @server.call_tool()
-async def assets_get_assets_internet_exposure_v1(
+async def xsiam_assets_get_assets_internet_exposure_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -4511,8 +4511,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for assets_get_assets_internet_exposure_v1
-assets_get_assets_internet_exposure_v1_schema = {
+# Schema for xsiam_assets_get_assets_internet_exposure_v1
+xsiam_assets_get_assets_internet_exposure_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4522,7 +4522,7 @@ assets_get_assets_internet_exposure_v1_schema = {
 }
 
 @server.call_tool()
-async def assets_get_asset_internet_exposure_v1(
+async def xsiam_assets_get_asset_internet_exposure_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -4576,8 +4576,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for assets_get_asset_internet_exposure_v1
-assets_get_asset_internet_exposure_v1_schema = {
+# Schema for xsiam_assets_get_asset_internet_exposure_v1
+xsiam_assets_get_asset_internet_exposure_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4587,7 +4587,7 @@ assets_get_asset_internet_exposure_v1_schema = {
 }
 
 @server.call_tool()
-async def assets_get_external_ip_address_ranges_v1(
+async def xsiam_assets_get_external_ip_address_ranges_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -4645,8 +4645,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for assets_get_external_ip_address_ranges_v1
-assets_get_external_ip_address_ranges_v1_schema = {
+# Schema for xsiam_assets_get_external_ip_address_ranges_v1
+xsiam_assets_get_external_ip_address_ranges_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4656,7 +4656,7 @@ assets_get_external_ip_address_ranges_v1_schema = {
 }
 
 @server.call_tool()
-async def assets_get_external_ip_address_range_v1(
+async def xsiam_assets_get_external_ip_address_range_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -4710,8 +4710,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for assets_get_external_ip_address_range_v1
-assets_get_external_ip_address_range_v1_schema = {
+# Schema for xsiam_assets_get_external_ip_address_range_v1
+xsiam_assets_get_external_ip_address_range_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4721,7 +4721,7 @@ assets_get_external_ip_address_range_v1_schema = {
 }
 
 @server.call_tool()
-async def triage_endpoint_v1(
+async def xsiam_triage_endpoint_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -4779,8 +4779,8 @@ Required license: **Cortex XSIAM Premium** or
     ]
 
 
-# Schema for triage_endpoint_v1
-triage_endpoint_v1_schema = {
+# Schema for xsiam_triage_endpoint_v1
+xsiam_triage_endpoint_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4790,7 +4790,7 @@ triage_endpoint_v1_schema = {
 }
 
 @server.call_tool()
-async def assets_get_vulnerability_tests_v1(
+async def xsiam_assets_get_vulnerability_tests_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -4842,8 +4842,8 @@ async def assets_get_vulnerability_tests_v1(
     ]
 
 
-# Schema for assets_get_vulnerability_tests_v1
-assets_get_vulnerability_tests_v1_schema = {
+# Schema for xsiam_assets_get_vulnerability_tests_v1
+xsiam_assets_get_vulnerability_tests_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4853,7 +4853,7 @@ assets_get_vulnerability_tests_v1_schema = {
 }
 
 @server.call_tool()
-async def assets_bulk_update_vulnerability_tests_v1(
+async def xsiam_assets_bulk_update_vulnerability_tests_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -4905,8 +4905,8 @@ async def assets_bulk_update_vulnerability_tests_v1(
     ]
 
 
-# Schema for assets_bulk_update_vulnerability_tests_v1
-assets_bulk_update_vulnerability_tests_v1_schema = {
+# Schema for xsiam_assets_bulk_update_vulnerability_tests_v1
+xsiam_assets_bulk_update_vulnerability_tests_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4916,7 +4916,7 @@ assets_bulk_update_vulnerability_tests_v1_schema = {
 }
 
 @server.call_tool()
-async def dataset_define_dataset_v1(
+async def xsiam_dataset_define_dataset_v1(
     request_data: Dict[str, Any] | None = None,
 ) -> List[types.TextContent]:
     """
@@ -4968,8 +4968,8 @@ These APIs are only applicable from within the XSIAM Notebook environment.
     ]
 
 
-# Schema for dataset_define_dataset_v1
-dataset_define_dataset_v1_schema = {
+# Schema for xsiam_dataset_define_dataset_v1
+xsiam_dataset_define_dataset_v1_schema = {
     "type": "object",
     "properties": {
         "request_data": {"type": "Dict[str, Any]", "description": ""},
@@ -4977,7 +4977,7 @@ dataset_define_dataset_v1_schema = {
 }
 
 @server.call_tool()
-async def dataset_get_created_datasets_v1(
+async def xsiam_dataset_get_created_datasets_v1(
 
 ) -> List[types.TextContent]:
     """
@@ -5025,8 +5025,8 @@ These APIs are only applicable from within the XSIAM Notebook environment.
     ]
 
 
-# Schema for dataset_get_created_datasets_v1
-dataset_get_created_datasets_v1_schema = {
+# Schema for xsiam_dataset_get_created_datasets_v1
+xsiam_dataset_get_created_datasets_v1_schema = {
     "type": "object",
     "properties": {
 
@@ -5034,7 +5034,7 @@ dataset_get_created_datasets_v1_schema = {
 }
 
 @server.call_tool()
-async def dataset_delete_dataset_v1(
+async def xsiam_dataset_delete_dataset_v1(
     request_data: Dict[str, Any] | None = None,
 ) -> List[types.TextContent]:
     """
@@ -5084,8 +5084,8 @@ These APIs are only applicable from within the XSIAM Notebook environment.
     ]
 
 
-# Schema for dataset_delete_dataset_v1
-dataset_delete_dataset_v1_schema = {
+# Schema for xsiam_dataset_delete_dataset_v1
+xsiam_dataset_delete_dataset_v1_schema = {
     "type": "object",
     "properties": {
         "request_data": {"type": "Dict[str, Any]", "description": ""},
@@ -5093,7 +5093,7 @@ dataset_delete_dataset_v1_schema = {
 }
 
 @server.call_tool()
-async def xql_add_dataset_v1(
+async def xsiam_xql_add_dataset_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -5147,8 +5147,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for xql_add_dataset_v1
-xql_add_dataset_v1_schema = {
+# Schema for xsiam_xql_add_dataset_v1
+xsiam_xql_add_dataset_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5158,7 +5158,7 @@ xql_add_dataset_v1_schema = {
 }
 
 @server.call_tool()
-async def xql_delete_dataset_v1(
+async def xsiam_xql_delete_dataset_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -5214,8 +5214,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for xql_delete_dataset_v1
-xql_delete_dataset_v1_schema = {
+# Schema for xsiam_xql_delete_dataset_v1
+xsiam_xql_delete_dataset_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5225,7 +5225,7 @@ xql_delete_dataset_v1_schema = {
 }
 
 @server.call_tool()
-async def xql_get_datasets_v1(
+async def xsiam_xql_get_datasets_v1(
     request_data: Dict[str, Any] | None = None,
 ) -> List[types.TextContent]:
     """
@@ -5273,8 +5273,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for xql_get_datasets_v1
-xql_get_datasets_v1_schema = {
+# Schema for xsiam_xql_get_datasets_v1
+xsiam_xql_get_datasets_v1_schema = {
     "type": "object",
     "properties": {
         "request_data": {"type": "Dict[str, Any]", "description": ""},
@@ -5282,7 +5282,7 @@ xql_get_datasets_v1_schema = {
 }
 
 @server.call_tool()
-async def xql_lookups_add_data_v1(
+async def xsiam_xql_lookups_add_data_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -5345,8 +5345,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for xql_lookups_add_data_v1
-xql_lookups_add_data_v1_schema = {
+# Schema for xsiam_xql_lookups_add_data_v1
+xsiam_xql_lookups_add_data_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5356,7 +5356,7 @@ xql_lookups_add_data_v1_schema = {
 }
 
 @server.call_tool()
-async def xql_lookups_remove_data_v1(
+async def xsiam_xql_lookups_remove_data_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -5416,8 +5416,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for xql_lookups_remove_data_v1
-xql_lookups_remove_data_v1_schema = {
+# Schema for xsiam_xql_lookups_remove_data_v1
+xsiam_xql_lookups_remove_data_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5427,7 +5427,7 @@ xql_lookups_remove_data_v1_schema = {
 }
 
 @server.call_tool()
-async def xql_lookups_get_data_v1(
+async def xsiam_xql_lookups_get_data_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -5486,8 +5486,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for xql_lookups_get_data_v1
-xql_lookups_get_data_v1_schema = {
+# Schema for xsiam_xql_lookups_get_data_v1
+xsiam_xql_lookups_get_data_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5497,7 +5497,7 @@ xql_lookups_get_data_v1_schema = {
 }
 
 @server.call_tool()
-async def get_triage_presets_v1(
+async def xsiam_get_triage_presets_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -5551,8 +5551,8 @@ Required license: **Cortex XSIAM Premium** or **Forensics add-on**
     ]
 
 
-# Schema for get_triage_presets_v1
-get_triage_presets_v1_schema = {
+# Schema for xsiam_get_triage_presets_v1
+xsiam_get_triage_presets_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5562,7 +5562,7 @@ get_triage_presets_v1_schema = {
 }
 
 @server.call_tool()
-async def authentication_settings_create_v1(
+async def xsiam_authentication_settings_create_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -5616,8 +5616,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for authentication_settings_create_v1
-authentication_settings_create_v1_schema = {
+# Schema for xsiam_authentication_settings_create_v1
+xsiam_authentication_settings_create_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5627,7 +5627,7 @@ authentication_settings_create_v1_schema = {
 }
 
 @server.call_tool()
-async def authentication_settings_update_v1(
+async def xsiam_authentication_settings_update_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -5681,8 +5681,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for authentication_settings_update_v1
-authentication_settings_update_v1_schema = {
+# Schema for xsiam_authentication_settings_update_v1
+xsiam_authentication_settings_update_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5692,7 +5692,7 @@ authentication_settings_update_v1_schema = {
 }
 
 @server.call_tool()
-async def authentication_settings_delete_v1(
+async def xsiam_authentication_settings_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -5748,8 +5748,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for authentication_settings_delete_v1
-authentication_settings_delete_v1_schema = {
+# Schema for xsiam_authentication_settings_delete_v1
+xsiam_authentication_settings_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5759,7 +5759,7 @@ authentication_settings_delete_v1_schema = {
 }
 
 @server.call_tool()
-async def authentication_settings_get_settings_v1(
+async def xsiam_authentication_settings_get_settings_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -5814,8 +5814,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for authentication_settings_get_settings_v1
-authentication_settings_get_settings_v1_schema = {
+# Schema for xsiam_authentication_settings_get_settings_v1
+xsiam_authentication_settings_get_settings_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5825,7 +5825,7 @@ authentication_settings_get_settings_v1_schema = {
 }
 
 @server.call_tool()
-async def authentication_settings_get_metadata_v1(
+async def xsiam_authentication_settings_get_metadata_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -5879,8 +5879,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for authentication_settings_get_metadata_v1
-authentication_settings_get_metadata_v1_schema = {
+# Schema for xsiam_authentication_settings_get_metadata_v1
+xsiam_authentication_settings_get_metadata_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5890,7 +5890,7 @@ authentication_settings_get_metadata_v1_schema = {
 }
 
 @server.call_tool()
-async def asm_management_upload_asm_data_v1(
+async def xsiam_asm_management_upload_asm_data_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -5946,8 +5946,8 @@ Required license: **Cortex XSIAM Premium** or  Cortex XSIAM with ASM add-on
     ]
 
 
-# Schema for asm_management_upload_asm_data_v1
-asm_management_upload_asm_data_v1_schema = {
+# Schema for xsiam_asm_management_upload_asm_data_v1
+xsiam_asm_management_upload_asm_data_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5957,7 +5957,7 @@ asm_management_upload_asm_data_v1_schema = {
 }
 
 @server.call_tool()
-async def assets_get_external_website_v1(
+async def xsiam_assets_get_external_website_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6011,8 +6011,8 @@ Required license: **Cortex XSIAM Premium** or  Cortex XSIAM with ASM Add-on
     ]
 
 
-# Schema for assets_get_external_website_v1
-assets_get_external_website_v1_schema = {
+# Schema for xsiam_assets_get_external_website_v1
+xsiam_assets_get_external_website_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6022,7 +6022,7 @@ assets_get_external_website_v1_schema = {
 }
 
 @server.call_tool()
-async def assets_get_external_websites_v1(
+async def xsiam_assets_get_external_websites_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6077,8 +6077,8 @@ Required license: **Cortex XSIAM Premium** or  Cortex XSIAM with ASM Add-on
     ]
 
 
-# Schema for assets_get_external_websites_v1
-assets_get_external_websites_v1_schema = {
+# Schema for xsiam_assets_get_external_websites_v1
+xsiam_assets_get_external_websites_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6088,7 +6088,7 @@ assets_get_external_websites_v1_schema = {
 }
 
 @server.call_tool()
-async def assets_get_external_websites_last_external_assessment_v1(
+async def xsiam_assets_get_external_websites_last_external_assessment_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6140,8 +6140,8 @@ async def assets_get_external_websites_last_external_assessment_v1(
     ]
 
 
-# Schema for assets_get_external_websites_last_external_assessment_v1
-assets_get_external_websites_last_external_assessment_v1_schema = {
+# Schema for xsiam_assets_get_external_websites_last_external_assessment_v1
+xsiam_assets_get_external_websites_last_external_assessment_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6151,7 +6151,7 @@ assets_get_external_websites_last_external_assessment_v1_schema = {
 }
 
 @server.call_tool()
-async def integrations_syslog_create_v1(
+async def xsiam_integrations_syslog_create_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6205,8 +6205,8 @@ You must have **View/Edit Alert Notification** permissions to run this endpoint.
     ]
 
 
-# Schema for integrations_syslog_create_v1
-integrations_syslog_create_v1_schema = {
+# Schema for xsiam_integrations_syslog_create_v1
+xsiam_integrations_syslog_create_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6216,7 +6216,7 @@ integrations_syslog_create_v1_schema = {
 }
 
 @server.call_tool()
-async def integrations_syslog_get_v1(
+async def xsiam_integrations_syslog_get_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6270,8 +6270,8 @@ You must have **View Alert Notification** permissions to run this endpoint.
     ]
 
 
-# Schema for integrations_syslog_get_v1
-integrations_syslog_get_v1_schema = {
+# Schema for xsiam_integrations_syslog_get_v1
+xsiam_integrations_syslog_get_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6281,7 +6281,7 @@ integrations_syslog_get_v1_schema = {
 }
 
 @server.call_tool()
-async def integrations_syslog_update_v1(
+async def xsiam_integrations_syslog_update_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6335,8 +6335,8 @@ You must have **View/Edit Alert Notification** permissions to run this endpoint.
     ]
 
 
-# Schema for integrations_syslog_update_v1
-integrations_syslog_update_v1_schema = {
+# Schema for xsiam_integrations_syslog_update_v1
+xsiam_integrations_syslog_update_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6346,7 +6346,7 @@ integrations_syslog_update_v1_schema = {
 }
 
 @server.call_tool()
-async def integrations_syslog_delete_v1(
+async def xsiam_integrations_syslog_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6400,8 +6400,8 @@ You must have **View/Edit Alert Notification** permissions to run this endpoint.
     ]
 
 
-# Schema for integrations_syslog_delete_v1
-integrations_syslog_delete_v1_schema = {
+# Schema for xsiam_integrations_syslog_delete_v1
+xsiam_integrations_syslog_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6411,7 +6411,7 @@ integrations_syslog_delete_v1_schema = {
 }
 
 @server.call_tool()
-async def integrations_syslog_test_v1(
+async def xsiam_integrations_syslog_test_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6465,8 +6465,8 @@ You must have **View Alert Notification** permissions to run this endpoint.
     ]
 
 
-# Schema for integrations_syslog_test_v1
-integrations_syslog_test_v1_schema = {
+# Schema for xsiam_integrations_syslog_test_v1
+xsiam_integrations_syslog_test_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6476,7 +6476,7 @@ integrations_syslog_test_v1_schema = {
 }
 
 @server.call_tool()
-async def entries_insert_v1(
+async def xsiam_entries_insert_v1(
     authorization: str,
     x_xdr_auth_id: str,
     id: str | None = None,
@@ -6531,8 +6531,8 @@ async def entries_insert_v1(
     ]
 
 
-# Schema for entries_insert_v1
-entries_insert_v1_schema = {
+# Schema for xsiam_entries_insert_v1
+xsiam_entries_insert_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6543,7 +6543,7 @@ entries_insert_v1_schema = {
 }
 
 @server.call_tool()
-async def entries_get_v1(
+async def xsiam_entries_get_v1(
     authorization: str,
     x_xdr_auth_id: str,
     id: str | None = None,
@@ -6599,8 +6599,8 @@ The response depends on what type of entry you choose to retrieve.
     ]
 
 
-# Schema for entries_get_v1
-entries_get_v1_schema = {
+# Schema for xsiam_entries_get_v1
+xsiam_entries_get_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6611,7 +6611,7 @@ entries_get_v1_schema = {
 }
 
 @server.call_tool()
-async def distributions_delete_v1(
+async def xsiam_distributions_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -6667,8 +6667,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for distributions_delete_v1
-distributions_delete_v1_schema = {
+# Schema for xsiam_distributions_delete_v1
+xsiam_distributions_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6678,7 +6678,7 @@ distributions_delete_v1_schema = {
 }
 
 @server.call_tool()
-async def asm_management_remove_asm_data_v1(
+async def xsiam_asm_management_remove_asm_data_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6739,8 +6739,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM with ASM add-on**
     ]
 
 
-# Schema for asm_management_remove_asm_data_v1
-asm_management_remove_asm_data_v1_schema = {
+# Schema for xsiam_asm_management_remove_asm_data_v1
+xsiam_asm_management_remove_asm_data_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api-key}"},
@@ -6750,7 +6750,7 @@ asm_management_remove_asm_data_v1_schema = {
 }
 
 @server.call_tool()
-async def scheduled_queries_list_v1(
+async def xsiam_scheduled_queries_list_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6804,8 +6804,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for scheduled_queries_list_v1
-scheduled_queries_list_v1_schema = {
+# Schema for xsiam_scheduled_queries_list_v1
+xsiam_scheduled_queries_list_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6815,7 +6815,7 @@ scheduled_queries_list_v1_schema = {
 }
 
 @server.call_tool()
-async def scheduled_queries_insert_v1(
+async def xsiam_scheduled_queries_insert_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: List[Any],
@@ -6869,8 +6869,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for scheduled_queries_insert_v1
-scheduled_queries_insert_v1_schema = {
+# Schema for xsiam_scheduled_queries_insert_v1
+xsiam_scheduled_queries_insert_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6880,7 +6880,7 @@ scheduled_queries_insert_v1_schema = {
 }
 
 @server.call_tool()
-async def scheduled_queries_delete_v1(
+async def xsiam_scheduled_queries_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: List[Any],
@@ -6934,8 +6934,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for scheduled_queries_delete_v1
-scheduled_queries_delete_v1_schema = {
+# Schema for xsiam_scheduled_queries_delete_v1
+xsiam_scheduled_queries_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6945,7 +6945,7 @@ scheduled_queries_delete_v1_schema = {
 }
 
 @server.call_tool()
-async def xql_library_get(
+async def xsiam_xql_library_get(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6999,8 +6999,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for xql_library_get
-xql_library_get_schema = {
+# Schema for xsiam_xql_library_get
+xsiam_xql_library_get_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7010,7 +7010,7 @@ xql_library_get_schema = {
 }
 
 @server.call_tool()
-async def xql_library_insert(
+async def xsiam_xql_library_insert(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7066,8 +7066,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for xql_library_insert
-xql_library_insert_schema = {
+# Schema for xsiam_xql_library_insert
+xsiam_xql_library_insert_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7077,7 +7077,7 @@ xql_library_insert_schema = {
 }
 
 @server.call_tool()
-async def xql_library_delete(
+async def xsiam_xql_library_delete(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7131,8 +7131,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for xql_library_delete
-xql_library_delete_schema = {
+# Schema for xsiam_xql_library_delete
+xsiam_xql_library_delete_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7142,7 +7142,7 @@ xql_library_delete_schema = {
 }
 
 @server.call_tool()
-async def indicators_get_v1(
+async def xsiam_indicators_get_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7202,8 +7202,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for indicators_get_v1
-indicators_get_v1_schema = {
+# Schema for xsiam_indicators_get_v1
+xsiam_indicators_get_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7213,7 +7213,7 @@ indicators_get_v1_schema = {
 }
 
 @server.call_tool()
-async def indicators_insert_v1(
+async def xsiam_indicators_insert_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: List[Any],
@@ -7269,8 +7269,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for indicators_insert_v1
-indicators_insert_v1_schema = {
+# Schema for xsiam_indicators_insert_v1
+xsiam_indicators_insert_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7280,7 +7280,7 @@ indicators_insert_v1_schema = {
 }
 
 @server.call_tool()
-async def indicators_delete_v1(
+async def xsiam_indicators_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7334,8 +7334,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for indicators_delete_v1
-indicators_delete_v1_schema = {
+# Schema for xsiam_indicators_delete_v1
+xsiam_indicators_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7345,7 +7345,7 @@ indicators_delete_v1_schema = {
 }
 
 @server.call_tool()
-async def bioc_get_v1(
+async def xsiam_bioc_get_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7402,8 +7402,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for bioc_get_v1
-bioc_get_v1_schema = {
+# Schema for xsiam_bioc_get_v1
+xsiam_bioc_get_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7413,7 +7413,7 @@ bioc_get_v1_schema = {
 }
 
 @server.call_tool()
-async def bioc_insert_v1(
+async def xsiam_bioc_insert_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: List[Any],
@@ -7469,8 +7469,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for bioc_insert_v1
-bioc_insert_v1_schema = {
+# Schema for xsiam_bioc_insert_v1
+xsiam_bioc_insert_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7480,7 +7480,7 @@ bioc_insert_v1_schema = {
 }
 
 @server.call_tool()
-async def bioc_delete_v1(
+async def xsiam_bioc_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7534,8 +7534,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for bioc_delete_v1
-bioc_delete_v1_schema = {
+# Schema for xsiam_bioc_delete_v1
+xsiam_bioc_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7545,7 +7545,7 @@ bioc_delete_v1_schema = {
 }
 
 @server.call_tool()
-async def correlations_get_v1(
+async def xsiam_correlations_get_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7603,8 +7603,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for correlations_get_v1
-correlations_get_v1_schema = {
+# Schema for xsiam_correlations_get_v1
+xsiam_correlations_get_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7614,7 +7614,7 @@ correlations_get_v1_schema = {
 }
 
 @server.call_tool()
-async def correlations_insert_v1(
+async def xsiam_correlations_insert_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: List[Any],
@@ -7670,8 +7670,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for correlations_insert_v1
-correlations_insert_v1_schema = {
+# Schema for xsiam_correlations_insert_v1
+xsiam_correlations_insert_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7681,7 +7681,7 @@ correlations_insert_v1_schema = {
 }
 
 @server.call_tool()
-async def correlations_delete_v1(
+async def xsiam_correlations_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7735,8 +7735,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for correlations_delete_v1
-correlations_delete_v1_schema = {
+# Schema for xsiam_correlations_delete_v1
+xsiam_correlations_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7746,7 +7746,7 @@ correlations_delete_v1_schema = {
 }
 
 @server.call_tool()
-async def playbooks_get_v1(
+async def xsiam_playbooks_get_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7800,8 +7800,8 @@ async def playbooks_get_v1(
     ]
 
 
-# Schema for playbooks_get_v1
-playbooks_get_v1_schema = {
+# Schema for xsiam_playbooks_get_v1
+xsiam_playbooks_get_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7811,7 +7811,7 @@ playbooks_get_v1_schema = {
 }
 
 @server.call_tool()
-async def playbooks_insert_v1(
+async def xsiam_playbooks_insert_v1(
     authorization: str,
     x_xdr_auth_id: str,
 ) -> List[types.TextContent]:
@@ -7862,8 +7862,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for playbooks_insert_v1
-playbooks_insert_v1_schema = {
+# Schema for xsiam_playbooks_insert_v1
+xsiam_playbooks_insert_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7872,7 +7872,7 @@ playbooks_insert_v1_schema = {
 }
 
 @server.call_tool()
-async def playbooks_delete_v1(
+async def xsiam_playbooks_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7926,8 +7926,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for playbooks_delete_v1
-playbooks_delete_v1_schema = {
+# Schema for xsiam_playbooks_delete_v1
+xsiam_playbooks_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7937,7 +7937,7 @@ playbooks_delete_v1_schema = {
 }
 
 @server.call_tool()
-async def scripts_get_v1(
+async def xsiam_scripts_get_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7991,8 +7991,8 @@ async def scripts_get_v1(
     ]
 
 
-# Schema for scripts_get_v1
-scripts_get_v1_schema = {
+# Schema for xsiam_scripts_get_v1
+xsiam_scripts_get_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -8002,7 +8002,7 @@ scripts_get_v1_schema = {
 }
 
 @server.call_tool()
-async def scripts_insert_v1(
+async def xsiam_scripts_insert_v1(
     authorization: str,
     x_xdr_auth_id: str,
 ) -> List[types.TextContent]:
@@ -8053,8 +8053,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for scripts_insert_v1
-scripts_insert_v1_schema = {
+# Schema for xsiam_scripts_insert_v1
+xsiam_scripts_insert_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -8063,7 +8063,7 @@ scripts_insert_v1_schema = {
 }
 
 @server.call_tool()
-async def scripts_delete_v1(
+async def xsiam_scripts_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -8117,8 +8117,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for scripts_delete_v1
-scripts_delete_v1_schema = {
+# Schema for xsiam_scripts_delete_v1
+xsiam_scripts_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -8128,7 +8128,7 @@ scripts_delete_v1_schema = {
 }
 
 @server.call_tool()
-async def dashboards_get_v1(
+async def xsiam_dashboards_get_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -8183,8 +8183,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for dashboards_get_v1
-dashboards_get_v1_schema = {
+# Schema for xsiam_dashboards_get_v1
+xsiam_dashboards_get_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -8194,7 +8194,7 @@ dashboards_get_v1_schema = {
 }
 
 @server.call_tool()
-async def dashboards_insert_v1(
+async def xsiam_dashboards_insert_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -8248,8 +8248,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for dashboards_insert_v1
-dashboards_insert_v1_schema = {
+# Schema for xsiam_dashboards_insert_v1
+xsiam_dashboards_insert_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -8259,7 +8259,7 @@ dashboards_insert_v1_schema = {
 }
 
 @server.call_tool()
-async def dashboards_delete_v1(
+async def xsiam_dashboards_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -8313,8 +8313,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for dashboards_delete_v1
-dashboards_delete_v1_schema = {
+# Schema for xsiam_dashboards_delete_v1
+xsiam_dashboards_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -8324,7 +8324,7 @@ dashboards_delete_v1_schema = {
 }
 
 @server.call_tool()
-async def widgets_get_v1(
+async def xsiam_widgets_get_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -8380,8 +8380,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for widgets_get_v1
-widgets_get_v1_schema = {
+# Schema for xsiam_widgets_get_v1
+xsiam_widgets_get_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -8391,7 +8391,7 @@ widgets_get_v1_schema = {
 }
 
 @server.call_tool()
-async def widgets_insert_v1(
+async def xsiam_widgets_insert_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: List[Any] | None = None,
@@ -8445,8 +8445,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for widgets_insert_v1
-widgets_insert_v1_schema = {
+# Schema for xsiam_widgets_insert_v1
+xsiam_widgets_insert_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -8456,7 +8456,7 @@ widgets_insert_v1_schema = {
 }
 
 @server.call_tool()
-async def widgets_delete_v1(
+async def xsiam_widgets_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -8510,8 +8510,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for widgets_delete_v1
-widgets_delete_v1_schema = {
+# Schema for xsiam_widgets_delete_v1
+xsiam_widgets_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},

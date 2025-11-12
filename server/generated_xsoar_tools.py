@@ -22,7 +22,7 @@ def set_server(s: Server) -> None:
 
 
 @server.call_tool()
-async def revoke_user_api_key(
+async def xsoar_revoke_user_api_key(
     username: str,
 ) -> List[types.TextContent]:
     """
@@ -68,8 +68,8 @@ async def revoke_user_api_key(
     ]
 
 
-# Schema for revoke_user_api_key
-revoke_user_api_key_schema = {
+# Schema for xsoar_revoke_user_api_key
+xsoar_revoke_user_api_key_schema = {
     "type": "object",
     "properties": {
         "username": {"type": "str", "description": "The username which the API keys assigned to"},
@@ -77,7 +77,7 @@ revoke_user_api_key_schema = {
 }
 
 @server.call_tool()
-async def save_or_update_script(
+async def xsoar_save_or_update_script(
 
 ) -> List[types.TextContent]:
     """
@@ -121,8 +121,8 @@ async def save_or_update_script(
     ]
 
 
-# Schema for save_or_update_script
-save_or_update_script_schema = {
+# Schema for xsoar_save_or_update_script
+xsoar_save_or_update_script_schema = {
     "type": "object",
     "properties": {
 
@@ -130,7 +130,7 @@ save_or_update_script_schema = {
 }
 
 @server.call_tool()
-async def copy_script(
+async def xsoar_copy_script(
 
 ) -> List[types.TextContent]:
     """
@@ -174,8 +174,8 @@ async def copy_script(
     ]
 
 
-# Schema for copy_script
-copy_script_schema = {
+# Schema for xsoar_copy_script
+xsoar_copy_script_schema = {
     "type": "object",
     "properties": {
 
@@ -183,7 +183,7 @@ copy_script_schema = {
 }
 
 @server.call_tool()
-async def delete_automation_script(
+async def xsoar_delete_automation_script(
 
 ) -> List[types.TextContent]:
     """
@@ -227,8 +227,8 @@ async def delete_automation_script(
     ]
 
 
-# Schema for delete_automation_script
-delete_automation_script_schema = {
+# Schema for xsoar_delete_automation_script
+xsoar_delete_automation_script_schema = {
     "type": "object",
     "properties": {
 
@@ -236,7 +236,7 @@ delete_automation_script_schema = {
 }
 
 @server.call_tool()
-async def import_script(
+async def xsoar_import_script(
 
 ) -> List[types.TextContent]:
     """
@@ -280,8 +280,8 @@ async def import_script(
     ]
 
 
-# Schema for import_script
-import_script_schema = {
+# Schema for xsoar_import_script
+xsoar_import_script_schema = {
     "type": "object",
     "properties": {
 
@@ -289,7 +289,7 @@ import_script_schema = {
 }
 
 @server.call_tool()
-async def get_automation_scripts(
+async def xsoar_get_automation_scripts(
 
 ) -> List[types.TextContent]:
     """
@@ -333,8 +333,8 @@ async def get_automation_scripts(
     ]
 
 
-# Schema for get_automation_scripts
-get_automation_scripts_schema = {
+# Schema for xsoar_get_automation_scripts
+xsoar_get_automation_scripts_schema = {
     "type": "object",
     "properties": {
 
@@ -342,7 +342,7 @@ get_automation_scripts_schema = {
 }
 
 @server.call_tool()
-async def import_classifier(
+async def xsoar_import_classifier(
 
 ) -> List[types.TextContent]:
     """
@@ -386,8 +386,8 @@ async def import_classifier(
     ]
 
 
-# Schema for import_classifier
-import_classifier_schema = {
+# Schema for xsoar_import_classifier
+xsoar_import_classifier_schema = {
     "type": "object",
     "properties": {
 
@@ -395,7 +395,7 @@ import_classifier_schema = {
 }
 
 @server.call_tool()
-async def upload_content_packs(
+async def xsoar_upload_content_packs(
 
 ) -> List[types.TextContent]:
     """
@@ -439,8 +439,8 @@ async def upload_content_packs(
     ]
 
 
-# Schema for upload_content_packs
-upload_content_packs_schema = {
+# Schema for xsoar_upload_content_packs
+xsoar_upload_content_packs_schema = {
     "type": "object",
     "properties": {
 
@@ -448,7 +448,7 @@ upload_content_packs_schema = {
 }
 
 @server.call_tool()
-async def import_dashboard(
+async def xsoar_import_dashboard(
 
 ) -> List[types.TextContent]:
     """
@@ -492,8 +492,8 @@ async def import_dashboard(
     ]
 
 
-# Schema for import_dashboard
-import_dashboard_schema = {
+# Schema for xsoar_import_dashboard
+xsoar_import_dashboard_schema = {
     "type": "object",
     "properties": {
 
@@ -501,7 +501,7 @@ import_dashboard_schema = {
 }
 
 @server.call_tool()
-async def investigation_add_entry_handler(
+async def xsoar_investigation_add_entry_handler(
 
 ) -> List[types.TextContent]:
     """
@@ -546,8 +546,8 @@ Body example: {"investigationId":"1234","data":"entry content…"}
     ]
 
 
-# Schema for investigation_add_entry_handler
-investigation_add_entry_handler_schema = {
+# Schema for xsoar_investigation_add_entry_handler
+xsoar_investigation_add_entry_handler_schema = {
     "type": "object",
     "properties": {
 
@@ -555,7 +555,7 @@ investigation_add_entry_handler_schema = {
 }
 
 @server.call_tool()
-async def download_file(
+async def xsoar_download_file(
     entryid: str,
 ) -> List[types.TextContent]:
     """
@@ -601,8 +601,8 @@ async def download_file(
     ]
 
 
-# Schema for download_file
-download_file_schema = {
+# Schema for xsoar_download_file
+xsoar_download_file_schema = {
     "type": "object",
     "properties": {
         "entryid": {"type": "str", "description": "Entry ID"},
@@ -610,7 +610,7 @@ download_file_schema = {
 }
 
 @server.call_tool()
-async def investigation_add_entries_sync(
+async def xsoar_investigation_add_entries_sync(
 
 ) -> List[types.TextContent]:
     """
@@ -655,8 +655,8 @@ Body example: {"investigationId":"1234","data":"entry content…"}
     ]
 
 
-# Schema for investigation_add_entries_sync
-investigation_add_entries_sync_schema = {
+# Schema for xsoar_investigation_add_entries_sync
+xsoar_investigation_add_entries_sync_schema = {
     "type": "object",
     "properties": {
 
@@ -664,7 +664,7 @@ investigation_add_entries_sync_schema = {
 }
 
 @server.call_tool()
-async def entry_export_artifact(
+async def xsoar_entry_export_artifact(
 
 ) -> List[types.TextContent]:
     """
@@ -708,8 +708,8 @@ async def entry_export_artifact(
     ]
 
 
-# Schema for entry_export_artifact
-entry_export_artifact_schema = {
+# Schema for xsoar_entry_export_artifact
+xsoar_entry_export_artifact_schema = {
     "type": "object",
     "properties": {
 
@@ -717,7 +717,7 @@ entry_export_artifact_schema = {
 }
 
 @server.call_tool()
-async def investigation_add_formatted_entry_handler(
+async def xsoar_investigation_add_formatted_entry_handler(
 
 ) -> List[types.TextContent]:
     """
@@ -762,8 +762,8 @@ Body example: {"investigationId":"1234","format":"table/json/text/markdown/html"
     ]
 
 
-# Schema for investigation_add_formatted_entry_handler
-investigation_add_formatted_entry_handler_schema = {
+# Schema for xsoar_investigation_add_formatted_entry_handler
+xsoar_investigation_add_formatted_entry_handler_schema = {
     "type": "object",
     "properties": {
 
@@ -771,7 +771,7 @@ investigation_add_formatted_entry_handler_schema = {
 }
 
 @server.call_tool()
-async def update_entry_note(
+async def xsoar_update_entry_note(
 
 ) -> List[types.TextContent]:
     """
@@ -816,8 +816,8 @@ Body example: {"id":1\@1234","version":"-1","investigationId":"1234","data":"tru
     ]
 
 
-# Schema for update_entry_note
-update_entry_note_schema = {
+# Schema for xsoar_update_entry_note
+xsoar_update_entry_note_schema = {
     "type": "object",
     "properties": {
 
@@ -825,7 +825,7 @@ update_entry_note_schema = {
 }
 
 @server.call_tool()
-async def update_entry_tags_op(
+async def xsoar_update_entry_tags_op(
 
 ) -> List[types.TextContent]:
     """
@@ -870,8 +870,8 @@ Body example: {"id":"1\@1234","version":"-1","investigationId":"1234","tags":["t
     ]
 
 
-# Schema for update_entry_tags_op
-update_entry_tags_op_schema = {
+# Schema for xsoar_update_entry_tags_op
+xsoar_update_entry_tags_op_schema = {
     "type": "object",
     "properties": {
 
@@ -879,7 +879,7 @@ update_entry_tags_op_schema = {
 }
 
 @server.call_tool()
-async def save_evidence(
+async def xsoar_save_evidence(
 
 ) -> List[types.TextContent]:
     """
@@ -924,8 +924,8 @@ To update evidence custom fields you should lowercase them and remove all spaces
     ]
 
 
-# Schema for save_evidence
-save_evidence_schema = {
+# Schema for xsoar_save_evidence
+xsoar_save_evidence_schema = {
     "type": "object",
     "properties": {
 
@@ -933,7 +933,7 @@ save_evidence_schema = {
 }
 
 @server.call_tool()
-async def delete_evidence_op(
+async def xsoar_delete_evidence_op(
 
 ) -> List[types.TextContent]:
     """
@@ -977,8 +977,8 @@ async def delete_evidence_op(
     ]
 
 
-# Schema for delete_evidence_op
-delete_evidence_op_schema = {
+# Schema for xsoar_delete_evidence_op
+xsoar_delete_evidence_op_schema = {
     "type": "object",
     "properties": {
 
@@ -986,7 +986,7 @@ delete_evidence_op_schema = {
 }
 
 @server.call_tool()
-async def search_evidence(
+async def xsoar_search_evidence(
 
 ) -> List[types.TextContent]:
     """
@@ -1030,8 +1030,8 @@ async def search_evidence(
     ]
 
 
-# Schema for search_evidence
-search_evidence_schema = {
+# Schema for xsoar_search_evidence
+xsoar_search_evidence_schema = {
     "type": "object",
     "properties": {
 
@@ -1039,7 +1039,7 @@ search_evidence_schema = {
 }
 
 @server.call_tool()
-async def health_handler(
+async def xsoar_health_handler(
 
 ) -> List[types.TextContent]:
     """
@@ -1083,8 +1083,8 @@ async def health_handler(
     ]
 
 
-# Schema for health_handler
-health_handler_schema = {
+# Schema for xsoar_health_handler
+xsoar_health_handler_schema = {
     "type": "object",
     "properties": {
 
@@ -1092,7 +1092,7 @@ health_handler_schema = {
 }
 
 @server.call_tool()
-async def containers(
+async def xsoar_containers(
 
 ) -> List[types.TextContent]:
     """
@@ -1136,8 +1136,8 @@ async def containers(
     ]
 
 
-# Schema for containers
-containers_schema = {
+# Schema for xsoar_containers
+xsoar_containers_schema = {
     "type": "object",
     "properties": {
 
@@ -1145,7 +1145,7 @@ containers_schema = {
 }
 
 @server.call_tool()
-async def create_incident(
+async def xsoar_create_incident(
 
 ) -> List[types.TextContent]:
     """
@@ -1193,8 +1193,8 @@ Use the 'createInvestigation\: true' to start the investigation process automati
     ]
 
 
-# Schema for create_incident
-create_incident_schema = {
+# Schema for xsoar_create_incident
+xsoar_create_incident_schema = {
     "type": "object",
     "properties": {
 
@@ -1202,7 +1202,7 @@ create_incident_schema = {
 }
 
 @server.call_tool()
-async def create_incidents_batch(
+async def xsoar_create_incidents_batch(
 
 ) -> List[types.TextContent]:
     """
@@ -1248,8 +1248,8 @@ To get the actual key name you can also go to Cortex XSOAR CLI and run /incident
     ]
 
 
-# Schema for create_incidents_batch
-create_incidents_batch_schema = {
+# Schema for xsoar_create_incidents_batch
+xsoar_create_incidents_batch_schema = {
     "type": "object",
     "properties": {
 
@@ -1257,7 +1257,7 @@ create_incidents_batch_schema = {
 }
 
 @server.call_tool()
-async def export_incidents_to_csv_batch(
+async def xsoar_export_incidents_to_csv_batch(
 
 ) -> List[types.TextContent]:
     """
@@ -1301,8 +1301,8 @@ async def export_incidents_to_csv_batch(
     ]
 
 
-# Schema for export_incidents_to_csv_batch
-export_incidents_to_csv_batch_schema = {
+# Schema for xsoar_export_incidents_to_csv_batch
+xsoar_export_incidents_to_csv_batch_schema = {
     "type": "object",
     "properties": {
 
@@ -1310,7 +1310,7 @@ export_incidents_to_csv_batch_schema = {
 }
 
 @server.call_tool()
-async def close_incidents_batch(
+async def xsoar_close_incidents_batch(
 
 ) -> List[types.TextContent]:
     """
@@ -1356,8 +1356,8 @@ To get the actual key name you can also go to Cortex XSOAR CLI and run /incident
     ]
 
 
-# Schema for close_incidents_batch
-close_incidents_batch_schema = {
+# Schema for xsoar_close_incidents_batch
+xsoar_close_incidents_batch_schema = {
     "type": "object",
     "properties": {
 
@@ -1365,7 +1365,7 @@ close_incidents_batch_schema = {
 }
 
 @server.call_tool()
-async def delete_incidents_batch(
+async def xsoar_delete_incidents_batch(
 
 ) -> List[types.TextContent]:
     """
@@ -1409,8 +1409,8 @@ async def delete_incidents_batch(
     ]
 
 
-# Schema for delete_incidents_batch
-delete_incidents_batch_schema = {
+# Schema for xsoar_delete_incidents_batch
+xsoar_delete_incidents_batch_schema = {
     "type": "object",
     "properties": {
 
@@ -1418,7 +1418,7 @@ delete_incidents_batch_schema = {
 }
 
 @server.call_tool()
-async def incident_as_csv(
+async def xsoar_incident_as_csv(
     id: str,
 ) -> List[types.TextContent]:
     """
@@ -1464,8 +1464,8 @@ async def incident_as_csv(
     ]
 
 
-# Schema for incident_as_csv
-incident_as_csv_schema = {
+# Schema for xsoar_incident_as_csv
+xsoar_incident_as_csv_schema = {
     "type": "object",
     "properties": {
         "id": {"type": "str", "description": "CSV file to fetch (returned from batch export to csv call)"},
@@ -1473,7 +1473,7 @@ incident_as_csv_schema = {
 }
 
 @server.call_tool()
-async def create_incident_json(
+async def xsoar_create_incident_json(
 
 ) -> List[types.TextContent]:
     """
@@ -1517,8 +1517,8 @@ async def create_incident_json(
     ]
 
 
-# Schema for create_incident_json
-create_incident_json_schema = {
+# Schema for xsoar_create_incident_json
+xsoar_create_incident_json_schema = {
     "type": "object",
     "properties": {
 
@@ -1526,7 +1526,7 @@ create_incident_json_schema = {
 }
 
 @server.call_tool()
-async def incident_file_upload(
+async def xsoar_incident_file_upload(
     id: str,
 ) -> List[types.TextContent]:
     """
@@ -1572,8 +1572,8 @@ async def incident_file_upload(
     ]
 
 
-# Schema for incident_file_upload
-incident_file_upload_schema = {
+# Schema for xsoar_incident_file_upload
+xsoar_incident_file_upload_schema = {
     "type": "object",
     "properties": {
         "id": {"type": "str", "description": "Incident id to update"},
@@ -1581,7 +1581,7 @@ incident_file_upload_schema = {
 }
 
 @server.call_tool()
-async def set_tags_field(
+async def xsoar_set_tags_field(
     id: str,
 ) -> List[types.TextContent]:
     """
@@ -1628,8 +1628,8 @@ values of the field. To reset the select values pass an empty array.
     ]
 
 
-# Schema for set_tags_field
-set_tags_field_schema = {
+# Schema for xsoar_set_tags_field
+xsoar_set_tags_field_schema = {
     "type": "object",
     "properties": {
         "id": {"type": "str", "description": "The machine name of the field prefixed with the type. For example indicator_tags or incident_dbotmirrortags"},
@@ -1637,7 +1637,7 @@ set_tags_field_schema = {
 }
 
 @server.call_tool()
-async def incidents_fields_by_incident_type(
+async def xsoar_incidents_fields_by_incident_type(
     type: str,
 ) -> List[types.TextContent]:
     """
@@ -1683,8 +1683,8 @@ async def incidents_fields_by_incident_type(
     ]
 
 
-# Schema for incidents_fields_by_incident_type
-incidents_fields_by_incident_type_schema = {
+# Schema for xsoar_incidents_fields_by_incident_type
+xsoar_incidents_fields_by_incident_type_schema = {
     "type": "object",
     "properties": {
         "type": {"type": "str", "description": "the name (case sensitive) of the incident type"},
@@ -1692,7 +1692,7 @@ incidents_fields_by_incident_type_schema = {
 }
 
 @server.call_tool()
-async def import_incident_fields(
+async def xsoar_import_incident_fields(
 
 ) -> List[types.TextContent]:
     """
@@ -1736,8 +1736,8 @@ async def import_incident_fields(
     ]
 
 
-# Schema for import_incident_fields
-import_incident_fields_schema = {
+# Schema for xsoar_import_incident_fields
+xsoar_import_incident_fields_schema = {
     "type": "object",
     "properties": {
 
@@ -1745,7 +1745,7 @@ import_incident_fields_schema = {
 }
 
 @server.call_tool()
-async def search_incidents(
+async def xsoar_search_incidents(
 
 ) -> List[types.TextContent]:
     """
@@ -1791,8 +1791,8 @@ async def search_incidents(
     ]
 
 
-# Schema for search_incidents
-search_incidents_schema = {
+# Schema for xsoar_search_incidents
+xsoar_search_incidents_schema = {
     "type": "object",
     "properties": {
 
@@ -1800,7 +1800,7 @@ search_incidents_schema = {
 }
 
 @server.call_tool()
-async def create_or_update_incident_type(
+async def xsoar_create_or_update_incident_type(
 
 ) -> List[types.TextContent]:
     """
@@ -1844,8 +1844,8 @@ async def create_or_update_incident_type(
     ]
 
 
-# Schema for create_or_update_incident_type
-create_or_update_incident_type_schema = {
+# Schema for xsoar_create_or_update_incident_type
+xsoar_create_or_update_incident_type_schema = {
     "type": "object",
     "properties": {
 
@@ -1853,7 +1853,7 @@ create_or_update_incident_type_schema = {
 }
 
 @server.call_tool()
-async def import_incident_types_handler(
+async def xsoar_import_incident_types_handler(
 
 ) -> List[types.TextContent]:
     """
@@ -1897,8 +1897,8 @@ async def import_incident_types_handler(
     ]
 
 
-# Schema for import_incident_types_handler
-import_incident_types_handler_schema = {
+# Schema for xsoar_import_incident_types_handler
+xsoar_import_incident_types_handler_schema = {
     "type": "object",
     "properties": {
 
@@ -1906,7 +1906,7 @@ import_incident_types_handler_schema = {
 }
 
 @server.call_tool()
-async def indicators_create(
+async def xsoar_indicators_create(
 
 ) -> List[types.TextContent]:
     """
@@ -1951,8 +1951,8 @@ To update indicator custom fields you should lowercase them and remove all space
     ]
 
 
-# Schema for indicators_create
-indicators_create_schema = {
+# Schema for xsoar_indicators_create
+xsoar_indicators_create_schema = {
     "type": "object",
     "properties": {
 
@@ -1960,7 +1960,7 @@ indicators_create_schema = {
 }
 
 @server.call_tool()
-async def indicators_edit(
+async def xsoar_indicators_edit(
 
 ) -> List[types.TextContent]:
     """
@@ -2005,8 +2005,8 @@ To update indicator custom fields you should lowercase them and remove all space
     ]
 
 
-# Schema for indicators_edit
-indicators_edit_schema = {
+# Schema for xsoar_indicators_edit
+xsoar_indicators_edit_schema = {
     "type": "object",
     "properties": {
 
@@ -2014,7 +2014,7 @@ indicators_edit_schema = {
 }
 
 @server.call_tool()
-async def indicator_whitelist(
+async def xsoar_indicator_whitelist(
 
 ) -> List[types.TextContent]:
     """
@@ -2059,8 +2059,8 @@ In order to delete an indicator and not whitelist, set doNotWhitelist boolean fi
     ]
 
 
-# Schema for indicator_whitelist
-indicator_whitelist_schema = {
+# Schema for xsoar_indicator_whitelist
+xsoar_indicator_whitelist_schema = {
     "type": "object",
     "properties": {
 
@@ -2068,7 +2068,7 @@ indicator_whitelist_schema = {
 }
 
 @server.call_tool()
-async def export_indicators_to_stix_batch(
+async def xsoar_export_indicators_to_stix_batch(
 
 ) -> List[types.TextContent]:
     """
@@ -2112,8 +2112,8 @@ async def export_indicators_to_stix_batch(
     ]
 
 
-# Schema for export_indicators_to_stix_batch
-export_indicators_to_stix_batch_schema = {
+# Schema for xsoar_export_indicators_to_stix_batch
+xsoar_export_indicators_to_stix_batch_schema = {
     "type": "object",
     "properties": {
 
@@ -2121,7 +2121,7 @@ export_indicators_to_stix_batch_schema = {
 }
 
 @server.call_tool()
-async def export_indicators_to_csv_batch(
+async def xsoar_export_indicators_to_csv_batch(
 
 ) -> List[types.TextContent]:
     """
@@ -2165,8 +2165,8 @@ async def export_indicators_to_csv_batch(
     ]
 
 
-# Schema for export_indicators_to_csv_batch
-export_indicators_to_csv_batch_schema = {
+# Schema for xsoar_export_indicators_to_csv_batch
+xsoar_export_indicators_to_csv_batch_schema = {
     "type": "object",
     "properties": {
 
@@ -2174,7 +2174,7 @@ export_indicators_to_csv_batch_schema = {
 }
 
 @server.call_tool()
-async def delete_indicators_batch(
+async def xsoar_delete_indicators_batch(
 
 ) -> List[types.TextContent]:
     """
@@ -2219,8 +2219,8 @@ In order to delete indicators and not whitelist, set doNotWhitelist boolean fiel
     ]
 
 
-# Schema for delete_indicators_batch
-delete_indicators_batch_schema = {
+# Schema for xsoar_delete_indicators_batch
+xsoar_delete_indicators_batch_schema = {
     "type": "object",
     "properties": {
 
@@ -2228,7 +2228,7 @@ delete_indicators_batch_schema = {
 }
 
 @server.call_tool()
-async def indicators_as_csv(
+async def xsoar_indicators_as_csv(
     id: str,
 ) -> List[types.TextContent]:
     """
@@ -2274,8 +2274,8 @@ async def indicators_as_csv(
     ]
 
 
-# Schema for indicators_as_csv
-indicators_as_csv_schema = {
+# Schema for xsoar_indicators_as_csv
+xsoar_indicators_as_csv_schema = {
     "type": "object",
     "properties": {
         "id": {"type": "str", "description": "CSV file to fetch (returned from batch export to csv call)"},
@@ -2283,7 +2283,7 @@ indicators_as_csv_schema = {
 }
 
 @server.call_tool()
-async def create_feed_indicators_json(
+async def xsoar_create_feed_indicators_json(
 
 ) -> List[types.TextContent]:
     """
@@ -2333,8 +2333,8 @@ one of `"never"`, `"interval"`, `"indicatorType"`) | **expirationInterval** (num
     ]
 
 
-# Schema for create_feed_indicators_json
-create_feed_indicators_json_schema = {
+# Schema for xsoar_create_feed_indicators_json
+xsoar_create_feed_indicators_json_schema = {
     "type": "object",
     "properties": {
 
@@ -2342,7 +2342,7 @@ create_feed_indicators_json_schema = {
 }
 
 @server.call_tool()
-async def indicators_search(
+async def xsoar_indicators_search(
 
 ) -> List[types.TextContent]:
     """
@@ -2386,8 +2386,8 @@ async def indicators_search(
     ]
 
 
-# Schema for indicators_search
-indicators_search_schema = {
+# Schema for xsoar_indicators_search
+xsoar_indicators_search_schema = {
     "type": "object",
     "properties": {
 
@@ -2395,7 +2395,7 @@ indicators_search_schema = {
 }
 
 @server.call_tool()
-async def indicators_as_stix(
+async def xsoar_indicators_as_stix(
     id: str,
 ) -> List[types.TextContent]:
     """
@@ -2441,8 +2441,8 @@ async def indicators_as_stix(
     ]
 
 
-# Schema for indicators_as_stix
-indicators_as_stix_schema = {
+# Schema for xsoar_indicators_as_stix
+xsoar_indicators_as_stix_schema = {
     "type": "object",
     "properties": {
         "id": {"type": "str", "description": "STIX V2 file to fetch (returned from batch export to STIX call)"},
@@ -2450,7 +2450,7 @@ indicators_as_stix_schema = {
 }
 
 @server.call_tool()
-async def indicators_timeline_delete(
+async def xsoar_indicators_timeline_delete(
 
 ) -> List[types.TextContent]:
     """
@@ -2494,8 +2494,8 @@ async def indicators_timeline_delete(
     ]
 
 
-# Schema for indicators_timeline_delete
-indicators_timeline_delete_schema = {
+# Schema for xsoar_indicators_timeline_delete
+xsoar_indicators_timeline_delete_schema = {
     "type": "object",
     "properties": {
 
@@ -2503,7 +2503,7 @@ indicators_timeline_delete_schema = {
 }
 
 @server.call_tool()
-async def indicators_create_batch(
+async def xsoar_indicators_create_batch(
 
 ) -> List[types.TextContent]:
     """
@@ -2547,8 +2547,8 @@ async def indicators_create_batch(
     ]
 
 
-# Schema for indicators_create_batch
-indicators_create_batch_schema = {
+# Schema for xsoar_indicators_create_batch
+xsoar_indicators_create_batch_schema = {
     "type": "object",
     "properties": {
 
@@ -2556,7 +2556,7 @@ indicators_create_batch_schema = {
 }
 
 @server.call_tool()
-async def create_or_update_whitelisted(
+async def xsoar_create_or_update_whitelisted(
 
 ) -> List[types.TextContent]:
     """
@@ -2600,8 +2600,8 @@ async def create_or_update_whitelisted(
     ]
 
 
-# Schema for create_or_update_whitelisted
-create_or_update_whitelisted_schema = {
+# Schema for xsoar_create_or_update_whitelisted
+xsoar_create_or_update_whitelisted_schema = {
     "type": "object",
     "properties": {
 
@@ -2609,7 +2609,7 @@ create_or_update_whitelisted_schema = {
 }
 
 @server.call_tool()
-async def add_ad_hoc_task(
+async def xsoar_add_ad_hoc_task(
     investigation_id: str,
 ) -> List[types.TextContent]:
     """
@@ -2655,8 +2655,8 @@ async def add_ad_hoc_task(
     ]
 
 
-# Schema for add_ad_hoc_task
-add_ad_hoc_task_schema = {
+# Schema for xsoar_add_ad_hoc_task
+xsoar_add_ad_hoc_task_schema = {
     "type": "object",
     "properties": {
         "investigation_id": {"type": "str", "description": "investigation ID"},
@@ -2664,7 +2664,7 @@ add_ad_hoc_task_schema = {
 }
 
 @server.call_tool()
-async def task_assign(
+async def xsoar_task_assign(
 
 ) -> List[types.TextContent]:
     """
@@ -2708,8 +2708,8 @@ async def task_assign(
     ]
 
 
-# Schema for task_assign
-task_assign_schema = {
+# Schema for xsoar_task_assign
+xsoar_task_assign_schema = {
     "type": "object",
     "properties": {
 
@@ -2717,7 +2717,7 @@ task_assign_schema = {
 }
 
 @server.call_tool()
-async def complete_task(
+async def xsoar_complete_task(
 
 ) -> List[types.TextContent]:
     """
@@ -2762,8 +2762,8 @@ Deprecated - use "/v2/inv-playbook/task/complete"
     ]
 
 
-# Schema for complete_task
-complete_task_schema = {
+# Schema for xsoar_complete_task
+xsoar_complete_task_schema = {
     "type": "object",
     "properties": {
 
@@ -2771,7 +2771,7 @@ complete_task_schema = {
 }
 
 @server.call_tool()
-async def simple_complete_task(
+async def xsoar_simple_complete_task(
 
 ) -> List[types.TextContent]:
     """
@@ -2815,8 +2815,8 @@ async def simple_complete_task(
     ]
 
 
-# Schema for simple_complete_task
-simple_complete_task_schema = {
+# Schema for xsoar_simple_complete_task
+xsoar_simple_complete_task_schema = {
     "type": "object",
     "properties": {
 
@@ -2824,7 +2824,7 @@ simple_complete_task_schema = {
 }
 
 @server.call_tool()
-async def delete_ad_hoc_task(
+async def xsoar_delete_ad_hoc_task(
     inv_pb_task_id: str,
     investigation_id: str,
 ) -> List[types.TextContent]:
@@ -2873,8 +2873,8 @@ async def delete_ad_hoc_task(
     ]
 
 
-# Schema for delete_ad_hoc_task
-delete_ad_hoc_task_schema = {
+# Schema for xsoar_delete_ad_hoc_task
+xsoar_delete_ad_hoc_task_schema = {
     "type": "object",
     "properties": {
         "inv_pb_task_id": {"type": "str", "description": "ad-hoc task ID"},
@@ -2883,7 +2883,7 @@ delete_ad_hoc_task_schema = {
 }
 
 @server.call_tool()
-async def task_set_due(
+async def xsoar_task_set_due(
 
 ) -> List[types.TextContent]:
     """
@@ -2927,8 +2927,8 @@ async def task_set_due(
     ]
 
 
-# Schema for task_set_due
-task_set_due_schema = {
+# Schema for xsoar_task_set_due
+xsoar_task_set_due_schema = {
     "type": "object",
     "properties": {
 
@@ -2936,7 +2936,7 @@ task_set_due_schema = {
 }
 
 @server.call_tool()
-async def edit_ad_hoc_task(
+async def xsoar_edit_ad_hoc_task(
     investigation_id: str,
 ) -> List[types.TextContent]:
     """
@@ -2982,8 +2982,8 @@ async def edit_ad_hoc_task(
     ]
 
 
-# Schema for edit_ad_hoc_task
-edit_ad_hoc_task_schema = {
+# Schema for xsoar_edit_ad_hoc_task
+xsoar_edit_ad_hoc_task_schema = {
     "type": "object",
     "properties": {
         "investigation_id": {"type": "str", "description": "investigation ID"},
@@ -2991,7 +2991,7 @@ edit_ad_hoc_task_schema = {
 }
 
 @server.call_tool()
-async def task_add_comment(
+async def xsoar_task_add_comment(
 
 ) -> List[types.TextContent]:
     """
@@ -3035,8 +3035,8 @@ async def task_add_comment(
     ]
 
 
-# Schema for task_add_comment
-task_add_comment_schema = {
+# Schema for xsoar_task_add_comment
+xsoar_task_add_comment_schema = {
     "type": "object",
     "properties": {
 
@@ -3044,7 +3044,7 @@ task_add_comment_schema = {
 }
 
 @server.call_tool()
-async def task_un_complete(
+async def xsoar_task_un_complete(
 
 ) -> List[types.TextContent]:
     """
@@ -3088,8 +3088,8 @@ async def task_un_complete(
     ]
 
 
-# Schema for task_un_complete
-task_un_complete_schema = {
+# Schema for xsoar_task_un_complete
+xsoar_task_un_complete_schema = {
     "type": "object",
     "properties": {
 
@@ -3097,7 +3097,7 @@ task_un_complete_schema = {
 }
 
 @server.call_tool()
-async def search_investigations(
+async def xsoar_search_investigations(
 
 ) -> List[types.TextContent]:
     """
@@ -3142,8 +3142,8 @@ You can filter by multiple options
     ]
 
 
-# Schema for search_investigations
-search_investigations_schema = {
+# Schema for xsoar_search_investigations
+xsoar_search_investigations_schema = {
     "type": "object",
     "properties": {
 
@@ -3151,7 +3151,7 @@ search_investigations_schema = {
 }
 
 @server.call_tool()
-async def logout_everyone_handler(
+async def xsoar_logout_everyone_handler(
 
 ) -> List[types.TextContent]:
     """
@@ -3195,8 +3195,8 @@ async def logout_everyone_handler(
     ]
 
 
-# Schema for logout_everyone_handler
-logout_everyone_handler_schema = {
+# Schema for xsoar_logout_everyone_handler
+xsoar_logout_everyone_handler_schema = {
     "type": "object",
     "properties": {
 
@@ -3204,7 +3204,7 @@ logout_everyone_handler_schema = {
 }
 
 @server.call_tool()
-async def logout_myself_handler(
+async def xsoar_logout_myself_handler(
 
 ) -> List[types.TextContent]:
     """
@@ -3248,8 +3248,8 @@ async def logout_myself_handler(
     ]
 
 
-# Schema for logout_myself_handler
-logout_myself_handler_schema = {
+# Schema for xsoar_logout_myself_handler
+xsoar_logout_myself_handler_schema = {
     "type": "object",
     "properties": {
 
@@ -3257,7 +3257,7 @@ logout_myself_handler_schema = {
 }
 
 @server.call_tool()
-async def logout_myself_other_sessions_handler(
+async def xsoar_logout_myself_other_sessions_handler(
 
 ) -> List[types.TextContent]:
     """
@@ -3301,8 +3301,8 @@ async def logout_myself_other_sessions_handler(
     ]
 
 
-# Schema for logout_myself_other_sessions_handler
-logout_myself_other_sessions_handler_schema = {
+# Schema for xsoar_logout_myself_other_sessions_handler
+xsoar_logout_myself_other_sessions_handler_schema = {
     "type": "object",
     "properties": {
 
@@ -3310,7 +3310,7 @@ logout_myself_other_sessions_handler_schema = {
 }
 
 @server.call_tool()
-async def logout_user_sessions_handler(
+async def xsoar_logout_user_sessions_handler(
     username: str,
 ) -> List[types.TextContent]:
     """
@@ -3356,8 +3356,8 @@ async def logout_user_sessions_handler(
     ]
 
 
-# Schema for logout_user_sessions_handler
-logout_user_sessions_handler_schema = {
+# Schema for xsoar_logout_user_sessions_handler
+xsoar_logout_user_sessions_handler_schema = {
     "type": "object",
     "properties": {
         "username": {"type": "str", "description": "Username to logout"},
@@ -3365,7 +3365,7 @@ logout_user_sessions_handler_schema = {
 }
 
 @server.call_tool()
-async def override_playbook_yaml(
+async def xsoar_override_playbook_yaml(
 
 ) -> List[types.TextContent]:
     """
@@ -3409,8 +3409,8 @@ async def override_playbook_yaml(
     ]
 
 
-# Schema for override_playbook_yaml
-override_playbook_yaml_schema = {
+# Schema for xsoar_override_playbook_yaml
+xsoar_override_playbook_yaml_schema = {
     "type": "object",
     "properties": {
 
@@ -3418,7 +3418,7 @@ override_playbook_yaml_schema = {
 }
 
 @server.call_tool()
-async def download_latest_report(
+async def xsoar_download_latest_report(
     id: str,
 ) -> List[types.TextContent]:
     """
@@ -3466,8 +3466,8 @@ async def download_latest_report(
     ]
 
 
-# Schema for download_latest_report
-download_latest_report_schema = {
+# Schema for xsoar_download_latest_report
+xsoar_download_latest_report_schema = {
     "type": "object",
     "properties": {
         "id": {"type": "str", "description": "the ID of the report to get"},
@@ -3475,7 +3475,7 @@ download_latest_report_schema = {
 }
 
 @server.call_tool()
-async def execute_report(
+async def xsoar_execute_report(
     request_id: str,
     id: str,
 ) -> List[types.TextContent]:
@@ -3524,8 +3524,8 @@ async def execute_report(
     ]
 
 
-# Schema for execute_report
-execute_report_schema = {
+# Schema for xsoar_execute_report
+xsoar_execute_report_schema = {
     "type": "object",
     "properties": {
         "request_id": {"type": "str", "description": "the ID to register the request under"},
@@ -3534,7 +3534,7 @@ execute_report_schema = {
 }
 
 @server.call_tool()
-async def all_reports(
+async def xsoar_all_reports(
 
 ) -> List[types.TextContent]:
     """
@@ -3578,8 +3578,8 @@ async def all_reports(
     ]
 
 
-# Schema for all_reports
-all_reports_schema = {
+# Schema for xsoar_all_reports
+xsoar_all_reports_schema = {
     "type": "object",
     "properties": {
 
@@ -3587,7 +3587,7 @@ all_reports_schema = {
 }
 
 @server.call_tool()
-async def upload_report(
+async def xsoar_upload_report(
 
 ) -> List[types.TextContent]:
     """
@@ -3631,8 +3631,8 @@ async def upload_report(
     ]
 
 
-# Schema for upload_report
-upload_report_schema = {
+# Schema for xsoar_upload_report
+xsoar_upload_report_schema = {
     "type": "object",
     "properties": {
 
@@ -3640,7 +3640,7 @@ upload_report_schema = {
 }
 
 @server.call_tool()
-async def report_by_id(
+async def xsoar_report_by_id(
     id: str,
 ) -> List[types.TextContent]:
     """
@@ -3686,8 +3686,8 @@ async def report_by_id(
     ]
 
 
-# Schema for report_by_id
-report_by_id_schema = {
+# Schema for xsoar_report_by_id
+xsoar_report_by_id_schema = {
     "type": "object",
     "properties": {
         "id": {"type": "str", "description": "the ID of the report to get"},
@@ -3695,7 +3695,7 @@ report_by_id_schema = {
 }
 
 @server.call_tool()
-async def get_audits(
+async def xsoar_get_audits(
 
 ) -> List[types.TextContent]:
     """
@@ -3739,8 +3739,8 @@ async def get_audits(
     ]
 
 
-# Schema for get_audits
-get_audits_schema = {
+# Schema for xsoar_get_audits
+xsoar_get_audits_schema = {
     "type": "object",
     "properties": {
 
@@ -3748,7 +3748,7 @@ get_audits_schema = {
 }
 
 @server.call_tool()
-async def docker_images(
+async def xsoar_docker_images(
 
 ) -> List[types.TextContent]:
     """
@@ -3792,8 +3792,8 @@ async def docker_images(
     ]
 
 
-# Schema for docker_images
-docker_images_schema = {
+# Schema for xsoar_docker_images
+xsoar_docker_images_schema = {
     "type": "object",
     "properties": {
 
@@ -3801,7 +3801,7 @@ docker_images_schema = {
 }
 
 @server.call_tool()
-async def create_docker_image(
+async def xsoar_create_docker_image(
 
 ) -> List[types.TextContent]:
     """
@@ -3845,8 +3845,8 @@ async def create_docker_image(
     ]
 
 
-# Schema for create_docker_image
-create_docker_image_schema = {
+# Schema for xsoar_create_docker_image
+xsoar_create_docker_image_schema = {
     "type": "object",
     "properties": {
 
@@ -3854,7 +3854,7 @@ create_docker_image_schema = {
 }
 
 @server.call_tool()
-async def integration_upload(
+async def xsoar_integration_upload(
 
 ) -> List[types.TextContent]:
     """
@@ -3898,8 +3898,8 @@ async def integration_upload(
     ]
 
 
-# Schema for integration_upload
-integration_upload_schema = {
+# Schema for xsoar_integration_upload
+xsoar_integration_upload_schema = {
     "type": "object",
     "properties": {
 
@@ -3907,7 +3907,7 @@ integration_upload_schema = {
 }
 
 @server.call_tool()
-async def reset_roi_widget(
+async def xsoar_reset_roi_widget(
 
 ) -> List[types.TextContent]:
     """
@@ -3951,8 +3951,8 @@ async def reset_roi_widget(
     ]
 
 
-# Schema for reset_roi_widget
-reset_roi_widget_schema = {
+# Schema for xsoar_reset_roi_widget
+xsoar_reset_roi_widget_schema = {
     "type": "object",
     "properties": {
 
@@ -3960,7 +3960,7 @@ reset_roi_widget_schema = {
 }
 
 @server.call_tool()
-async def get_stats_for_dashboard_old_format(
+async def xsoar_get_stats_for_dashboard_old_format(
 
 ) -> List[types.TextContent]:
     """
@@ -4005,8 +4005,8 @@ Deprecated - use "/v2/statistics/dashboards/query
     ]
 
 
-# Schema for get_stats_for_dashboard_old_format
-get_stats_for_dashboard_old_format_schema = {
+# Schema for xsoar_get_stats_for_dashboard_old_format
+xsoar_get_stats_for_dashboard_old_format_schema = {
     "type": "object",
     "properties": {
 
@@ -4014,7 +4014,7 @@ get_stats_for_dashboard_old_format_schema = {
 }
 
 @server.call_tool()
-async def get_stats_for_widget_old_format(
+async def xsoar_get_stats_for_widget_old_format(
 
 ) -> List[types.TextContent]:
     """
@@ -4061,8 +4061,8 @@ Deprecated - use "/v2/statistics/widgets/query
     ]
 
 
-# Schema for get_stats_for_widget_old_format
-get_stats_for_widget_old_format_schema = {
+# Schema for xsoar_get_stats_for_widget_old_format
+xsoar_get_stats_for_widget_old_format_schema = {
     "type": "object",
     "properties": {
 
@@ -4070,7 +4070,7 @@ get_stats_for_widget_old_format_schema = {
 }
 
 @server.call_tool()
-async def complete_task_v2(
+async def xsoar_complete_task_v2(
 
 ) -> List[types.TextContent]:
     """
@@ -4114,8 +4114,8 @@ async def complete_task_v2(
     ]
 
 
-# Schema for complete_task_v2
-complete_task_v2_schema = {
+# Schema for xsoar_complete_task_v2
+xsoar_complete_task_v2_schema = {
     "type": "object",
     "properties": {
 
@@ -4123,7 +4123,7 @@ complete_task_v2_schema = {
 }
 
 @server.call_tool()
-async def submit_task_form(
+async def xsoar_submit_task_form(
 
 ) -> List[types.TextContent]:
     """
@@ -4167,8 +4167,8 @@ async def submit_task_form(
     ]
 
 
-# Schema for submit_task_form
-submit_task_form_schema = {
+# Schema for xsoar_submit_task_form
+xsoar_submit_task_form_schema = {
     "type": "object",
     "properties": {
 
@@ -4176,7 +4176,7 @@ submit_task_form_schema = {
 }
 
 @server.call_tool()
-async def get_stats_for_dashboard(
+async def xsoar_get_stats_for_dashboard(
 
 ) -> List[types.TextContent]:
     """
@@ -4220,8 +4220,8 @@ async def get_stats_for_dashboard(
     ]
 
 
-# Schema for get_stats_for_dashboard
-get_stats_for_dashboard_schema = {
+# Schema for xsoar_get_stats_for_dashboard
+xsoar_get_stats_for_dashboard_schema = {
     "type": "object",
     "properties": {
 
@@ -4229,7 +4229,7 @@ get_stats_for_dashboard_schema = {
 }
 
 @server.call_tool()
-async def get_stats_for_widget(
+async def xsoar_get_stats_for_widget(
 
 ) -> List[types.TextContent]:
     """
@@ -4274,8 +4274,8 @@ async def get_stats_for_widget(
     ]
 
 
-# Schema for get_stats_for_widget
-get_stats_for_widget_schema = {
+# Schema for xsoar_get_stats_for_widget
+xsoar_get_stats_for_widget_schema = {
     "type": "object",
     "properties": {
 
@@ -4283,7 +4283,7 @@ get_stats_for_widget_schema = {
 }
 
 @server.call_tool()
-async def all_widgets(
+async def xsoar_all_widgets(
 
 ) -> List[types.TextContent]:
     """
@@ -4327,8 +4327,8 @@ async def all_widgets(
     ]
 
 
-# Schema for all_widgets
-all_widgets_schema = {
+# Schema for xsoar_all_widgets
+xsoar_all_widgets_schema = {
     "type": "object",
     "properties": {
 
@@ -4336,7 +4336,7 @@ all_widgets_schema = {
 }
 
 @server.call_tool()
-async def save_widget(
+async def xsoar_save_widget(
 
 ) -> List[types.TextContent]:
     """
@@ -4380,8 +4380,8 @@ async def save_widget(
     ]
 
 
-# Schema for save_widget
-save_widget_schema = {
+# Schema for xsoar_save_widget
+xsoar_save_widget_schema = {
     "type": "object",
     "properties": {
 
@@ -4389,7 +4389,7 @@ save_widget_schema = {
 }
 
 @server.call_tool()
-async def import_widget(
+async def xsoar_import_widget(
 
 ) -> List[types.TextContent]:
     """
@@ -4433,8 +4433,8 @@ async def import_widget(
     ]
 
 
-# Schema for import_widget
-import_widget_schema = {
+# Schema for xsoar_import_widget
+xsoar_import_widget_schema = {
     "type": "object",
     "properties": {
 
@@ -4442,7 +4442,7 @@ import_widget_schema = {
 }
 
 @server.call_tool()
-async def get_widget(
+async def xsoar_get_widget(
     id: str,
 ) -> List[types.TextContent]:
     """
@@ -4488,8 +4488,8 @@ async def get_widget(
     ]
 
 
-# Schema for get_widget
-get_widget_schema = {
+# Schema for xsoar_get_widget
+xsoar_get_widget_schema = {
     "type": "object",
     "properties": {
         "id": {"type": "str", "description": "The ID of widget to get."},
@@ -4497,7 +4497,7 @@ get_widget_schema = {
 }
 
 @server.call_tool()
-async def delete_widget(
+async def xsoar_delete_widget(
     id: str,
 ) -> List[types.TextContent]:
     """
@@ -4543,8 +4543,8 @@ async def delete_widget(
     ]
 
 
-# Schema for delete_widget
-delete_widget_schema = {
+# Schema for xsoar_delete_widget
+xsoar_delete_widget_schema = {
     "type": "object",
     "properties": {
         "id": {"type": "str", "description": "Widget id to remove (returned from widget save or widgets get)"},
@@ -4552,7 +4552,7 @@ delete_widget_schema = {
 }
 
 @server.call_tool()
-async def workers_status_handler(
+async def xsoar_workers_status_handler(
 
 ) -> List[types.TextContent]:
     """
@@ -4596,8 +4596,8 @@ async def workers_status_handler(
     ]
 
 
-# Schema for workers_status_handler
-workers_status_handler_schema = {
+# Schema for xsoar_workers_status_handler
+xsoar_workers_status_handler_schema = {
     "type": "object",
     "properties": {
 
