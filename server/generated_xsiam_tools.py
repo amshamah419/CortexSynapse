@@ -388,7 +388,7 @@ get_incidents_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_alerts_get_alerts(
+async def alerts_get_alerts_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -447,8 +447,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_alerts_get_alerts
-_public_api_v1_alerts_get_alerts_schema = {
+# Schema for alerts_get_alerts_v1
+alerts_get_alerts_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -458,7 +458,7 @@ _public_api_v1_alerts_get_alerts_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v2_alerts_get_alerts_multi_events(
+async def alerts_get_alerts_multi_events_v2(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -519,8 +519,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v2_alerts_get_alerts_multi_events
-_public_api_v2_alerts_get_alerts_multi_events_schema = {
+# Schema for alerts_get_alerts_multi_events_v2
+alerts_get_alerts_multi_events_v2_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3475,7 +3475,7 @@ healthcheck_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_system_get_tenant_info(
+async def system_get_tenant_info_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -3529,8 +3529,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_system_get_tenant_info
-_public_api_v1_system_get_tenant_info_schema = {
+# Schema for system_get_tenant_info_v1
+system_get_tenant_info_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3540,7 +3540,7 @@ _public_api_v1_system_get_tenant_info_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_incidents_get_incident_extra_data(
+async def incidents_get_incident_extra_data_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -3599,8 +3599,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_incidents_get_incident_extra_data
-_public_api_v1_incidents_get_incident_extra_data_schema = {
+# Schema for incidents_get_incident_extra_data_v1
+incidents_get_incident_extra_data_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3610,7 +3610,7 @@ _public_api_v1_incidents_get_incident_extra_data_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_rbac_get_users(
+async def rbac_get_users_v1(
     authorization: str,
     x_xdr_auth_id: str,
 ) -> List[types.TextContent]:
@@ -3661,8 +3661,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_rbac_get_users
-_public_api_v1_rbac_get_users_schema = {
+# Schema for rbac_get_users_v1
+rbac_get_users_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3671,7 +3671,7 @@ _public_api_v1_rbac_get_users_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_rbac_get_roles(
+async def rbac_get_roles_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -3725,8 +3725,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_rbac_get_roles
-_public_api_v1_rbac_get_roles_schema = {
+# Schema for rbac_get_roles_v1
+rbac_get_roles_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3736,7 +3736,7 @@ _public_api_v1_rbac_get_roles_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_rbac_get_user_group(
+async def rbac_get_user_group_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -3790,8 +3790,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_rbac_get_user_group
-_public_api_v1_rbac_get_user_group_schema = {
+# Schema for rbac_get_user_group_v1
+rbac_get_user_group_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3801,7 +3801,7 @@ _public_api_v1_rbac_get_user_group_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_rbac_set_user_role(
+async def rbac_set_user_role_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -3855,8 +3855,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_rbac_set_user_role
-_public_api_v1_rbac_set_user_role_schema = {
+# Schema for rbac_set_user_role_v1
+rbac_set_user_role_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3866,7 +3866,7 @@ _public_api_v1_rbac_set_user_role_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_endpoints_get_endpoint(
+async def endpoints_get_endpoint_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -3923,8 +3923,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_endpoints_get_endpoint
-_public_api_v1_endpoints_get_endpoint_schema = {
+# Schema for endpoints_get_endpoint_v1
+endpoints_get_endpoint_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3934,7 +3934,7 @@ _public_api_v1_endpoints_get_endpoint_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_get_risk_score(
+async def get_risk_score_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -3988,8 +3988,8 @@ Required license: **Cortex XSIAM Premium** or **Identity Threat Module**
     ]
 
 
-# Schema for _public_api_v1_get_risk_score
-_public_api_v1_get_risk_score_schema = {
+# Schema for get_risk_score_v1
+get_risk_score_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -3999,7 +3999,7 @@ _public_api_v1_get_risk_score_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_get_risky_users(
+async def get_risky_users_v1(
     authorization: str,
     x_xdr_auth_id: str,
 ) -> List[types.TextContent]:
@@ -4050,8 +4050,8 @@ Required license: **Cortex XSIAM Premium** or **Identity Threat Module**
     ]
 
 
-# Schema for _public_api_v1_get_risky_users
-_public_api_v1_get_risky_users_schema = {
+# Schema for get_risky_users_v1
+get_risky_users_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4060,7 +4060,7 @@ _public_api_v1_get_risky_users_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_get_risky_hosts(
+async def get_risky_hosts_v1(
     authorization: str,
     x_xdr_auth_id: str,
 ) -> List[types.TextContent]:
@@ -4111,8 +4111,8 @@ Required license: **Cortex XSIAM Premium** or **Identity Threat Module**
     ]
 
 
-# Schema for _public_api_v1_get_risky_hosts
-_public_api_v1_get_risky_hosts_schema = {
+# Schema for get_risky_hosts_v1
+get_risky_hosts_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4121,7 +4121,7 @@ _public_api_v1_get_risky_hosts_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_endpoints_file_retrieval(
+async def endpoints_file_retrieval_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -4177,8 +4177,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_endpoints_file_retrieval
-_public_api_v1_endpoints_file_retrieval_schema = {
+# Schema for endpoints_file_retrieval_v1
+endpoints_file_retrieval_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4188,7 +4188,7 @@ _public_api_v1_endpoints_file_retrieval_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_endpoints_isolate(
+async def endpoints_isolate_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -4242,8 +4242,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_endpoints_isolate
-_public_api_v1_endpoints_isolate_schema = {
+# Schema for endpoints_isolate_v1
+endpoints_isolate_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4253,7 +4253,7 @@ _public_api_v1_endpoints_isolate_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_audits_agents_reports(
+async def audits_agents_reports_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -4310,8 +4310,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_audits_agents_reports
-_public_api_v1_audits_agents_reports_schema = {
+# Schema for audits_agents_reports_v1
+audits_agents_reports_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4321,7 +4321,7 @@ _public_api_v1_audits_agents_reports_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_assets_get_external_service(
+async def assets_get_external_service_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -4375,8 +4375,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise**, **Cor
     ]
 
 
-# Schema for _public_api_v1_assets_get_external_service
-_public_api_v1_assets_get_external_service_schema = {
+# Schema for assets_get_external_service_v1
+assets_get_external_service_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4386,7 +4386,7 @@ _public_api_v1_assets_get_external_service_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_assets_get_external_services(
+async def assets_get_external_services_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -4442,8 +4442,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise**, **Cor
     ]
 
 
-# Schema for _public_api_v1_assets_get_external_services
-_public_api_v1_assets_get_external_services_schema = {
+# Schema for assets_get_external_services_v1
+assets_get_external_services_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "api-key"},
@@ -4453,7 +4453,7 @@ _public_api_v1_assets_get_external_services_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_assets_get_assets_internet_exposure(
+async def assets_get_assets_internet_exposure_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -4511,8 +4511,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_assets_get_assets_internet_exposure
-_public_api_v1_assets_get_assets_internet_exposure_schema = {
+# Schema for assets_get_assets_internet_exposure_v1
+assets_get_assets_internet_exposure_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4522,7 +4522,7 @@ _public_api_v1_assets_get_assets_internet_exposure_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_assets_get_asset_internet_exposure(
+async def assets_get_asset_internet_exposure_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -4576,8 +4576,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_assets_get_asset_internet_exposure
-_public_api_v1_assets_get_asset_internet_exposure_schema = {
+# Schema for assets_get_asset_internet_exposure_v1
+assets_get_asset_internet_exposure_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4587,7 +4587,7 @@ _public_api_v1_assets_get_asset_internet_exposure_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_assets_get_external_ip_address_ranges(
+async def assets_get_external_ip_address_ranges_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -4645,8 +4645,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_assets_get_external_ip_address_ranges
-_public_api_v1_assets_get_external_ip_address_ranges_schema = {
+# Schema for assets_get_external_ip_address_ranges_v1
+assets_get_external_ip_address_ranges_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4656,7 +4656,7 @@ _public_api_v1_assets_get_external_ip_address_ranges_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_assets_get_external_ip_address_range(
+async def assets_get_external_ip_address_range_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -4710,8 +4710,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_assets_get_external_ip_address_range
-_public_api_v1_assets_get_external_ip_address_range_schema = {
+# Schema for assets_get_external_ip_address_range_v1
+assets_get_external_ip_address_range_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4721,7 +4721,7 @@ _public_api_v1_assets_get_external_ip_address_range_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_triage_endpoint(
+async def triage_endpoint_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -4779,8 +4779,8 @@ Required license: **Cortex XSIAM Premium** or
     ]
 
 
-# Schema for _public_api_v1_triage_endpoint
-_public_api_v1_triage_endpoint_schema = {
+# Schema for triage_endpoint_v1
+triage_endpoint_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4790,7 +4790,7 @@ _public_api_v1_triage_endpoint_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_assets_get_vulnerability_tests(
+async def assets_get_vulnerability_tests_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -4842,8 +4842,8 @@ async def _public_api_v1_assets_get_vulnerability_tests(
     ]
 
 
-# Schema for _public_api_v1_assets_get_vulnerability_tests
-_public_api_v1_assets_get_vulnerability_tests_schema = {
+# Schema for assets_get_vulnerability_tests_v1
+assets_get_vulnerability_tests_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4853,7 +4853,7 @@ _public_api_v1_assets_get_vulnerability_tests_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_assets_bulk_update_vulnerability_tests(
+async def assets_bulk_update_vulnerability_tests_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -4905,8 +4905,8 @@ async def _public_api_v1_assets_bulk_update_vulnerability_tests(
     ]
 
 
-# Schema for _public_api_v1_assets_bulk_update_vulnerability_tests
-_public_api_v1_assets_bulk_update_vulnerability_tests_schema = {
+# Schema for assets_bulk_update_vulnerability_tests_v1
+assets_bulk_update_vulnerability_tests_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -4916,7 +4916,7 @@ _public_api_v1_assets_bulk_update_vulnerability_tests_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_dataset_define_dataset(
+async def dataset_define_dataset_v1(
     request_data: Dict[str, Any] | None = None,
 ) -> List[types.TextContent]:
     """
@@ -4968,8 +4968,8 @@ These APIs are only applicable from within the XSIAM Notebook environment.
     ]
 
 
-# Schema for _public_api_v1_dataset_define_dataset
-_public_api_v1_dataset_define_dataset_schema = {
+# Schema for dataset_define_dataset_v1
+dataset_define_dataset_v1_schema = {
     "type": "object",
     "properties": {
         "request_data": {"type": "Dict[str, Any]", "description": ""},
@@ -4977,7 +4977,7 @@ _public_api_v1_dataset_define_dataset_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_dataset_get_created_datasets(
+async def dataset_get_created_datasets_v1(
 
 ) -> List[types.TextContent]:
     """
@@ -5025,8 +5025,8 @@ These APIs are only applicable from within the XSIAM Notebook environment.
     ]
 
 
-# Schema for _public_api_v1_dataset_get_created_datasets
-_public_api_v1_dataset_get_created_datasets_schema = {
+# Schema for dataset_get_created_datasets_v1
+dataset_get_created_datasets_v1_schema = {
     "type": "object",
     "properties": {
 
@@ -5034,7 +5034,7 @@ _public_api_v1_dataset_get_created_datasets_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_dataset_delete_dataset(
+async def dataset_delete_dataset_v1(
     request_data: Dict[str, Any] | None = None,
 ) -> List[types.TextContent]:
     """
@@ -5084,8 +5084,8 @@ These APIs are only applicable from within the XSIAM Notebook environment.
     ]
 
 
-# Schema for _public_api_v1_dataset_delete_dataset
-_public_api_v1_dataset_delete_dataset_schema = {
+# Schema for dataset_delete_dataset_v1
+dataset_delete_dataset_v1_schema = {
     "type": "object",
     "properties": {
         "request_data": {"type": "Dict[str, Any]", "description": ""},
@@ -5093,7 +5093,7 @@ _public_api_v1_dataset_delete_dataset_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_xql_add_dataset(
+async def xql_add_dataset_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -5147,8 +5147,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_xql_add_dataset
-_public_api_v1_xql_add_dataset_schema = {
+# Schema for xql_add_dataset_v1
+xql_add_dataset_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5158,7 +5158,7 @@ _public_api_v1_xql_add_dataset_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_xql_delete_dataset(
+async def xql_delete_dataset_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -5214,8 +5214,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_xql_delete_dataset
-_public_api_v1_xql_delete_dataset_schema = {
+# Schema for xql_delete_dataset_v1
+xql_delete_dataset_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5225,7 +5225,7 @@ _public_api_v1_xql_delete_dataset_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_xql_get_datasets(
+async def xql_get_datasets_v1(
     request_data: Dict[str, Any] | None = None,
 ) -> List[types.TextContent]:
     """
@@ -5273,8 +5273,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_xql_get_datasets
-_public_api_v1_xql_get_datasets_schema = {
+# Schema for xql_get_datasets_v1
+xql_get_datasets_v1_schema = {
     "type": "object",
     "properties": {
         "request_data": {"type": "Dict[str, Any]", "description": ""},
@@ -5282,7 +5282,7 @@ _public_api_v1_xql_get_datasets_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_xql_lookups_add_data(
+async def xql_lookups_add_data_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -5345,8 +5345,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_xql_lookups_add_data
-_public_api_v1_xql_lookups_add_data_schema = {
+# Schema for xql_lookups_add_data_v1
+xql_lookups_add_data_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5356,7 +5356,7 @@ _public_api_v1_xql_lookups_add_data_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_xql_lookups_remove_data(
+async def xql_lookups_remove_data_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -5416,8 +5416,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_xql_lookups_remove_data
-_public_api_v1_xql_lookups_remove_data_schema = {
+# Schema for xql_lookups_remove_data_v1
+xql_lookups_remove_data_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5427,7 +5427,7 @@ _public_api_v1_xql_lookups_remove_data_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_xql_lookups_get_data(
+async def xql_lookups_get_data_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -5486,8 +5486,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_xql_lookups_get_data
-_public_api_v1_xql_lookups_get_data_schema = {
+# Schema for xql_lookups_get_data_v1
+xql_lookups_get_data_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5497,7 +5497,7 @@ _public_api_v1_xql_lookups_get_data_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_get_triage_presets(
+async def get_triage_presets_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -5551,8 +5551,8 @@ Required license: **Cortex XSIAM Premium** or **Forensics add-on**
     ]
 
 
-# Schema for _public_api_v1_get_triage_presets
-_public_api_v1_get_triage_presets_schema = {
+# Schema for get_triage_presets_v1
+get_triage_presets_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5562,7 +5562,7 @@ _public_api_v1_get_triage_presets_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_authentication_settings_create(
+async def authentication_settings_create_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -5616,8 +5616,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_authentication_settings_create
-_public_api_v1_authentication_settings_create_schema = {
+# Schema for authentication_settings_create_v1
+authentication_settings_create_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5627,7 +5627,7 @@ _public_api_v1_authentication_settings_create_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_authentication_settings_update(
+async def authentication_settings_update_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -5681,8 +5681,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_authentication_settings_update
-_public_api_v1_authentication_settings_update_schema = {
+# Schema for authentication_settings_update_v1
+authentication_settings_update_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5692,7 +5692,7 @@ _public_api_v1_authentication_settings_update_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_authentication_settings_delete(
+async def authentication_settings_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -5748,8 +5748,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_authentication_settings_delete
-_public_api_v1_authentication_settings_delete_schema = {
+# Schema for authentication_settings_delete_v1
+authentication_settings_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5759,7 +5759,7 @@ _public_api_v1_authentication_settings_delete_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_authentication_settings_get_settings(
+async def authentication_settings_get_settings_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -5814,8 +5814,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_authentication_settings_get_settings
-_public_api_v1_authentication_settings_get_settings_schema = {
+# Schema for authentication_settings_get_settings_v1
+authentication_settings_get_settings_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5825,7 +5825,7 @@ _public_api_v1_authentication_settings_get_settings_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_authentication_settings_get_metadata(
+async def authentication_settings_get_metadata_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -5879,8 +5879,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_authentication_settings_get_metadata
-_public_api_v1_authentication_settings_get_metadata_schema = {
+# Schema for authentication_settings_get_metadata_v1
+authentication_settings_get_metadata_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5890,7 +5890,7 @@ _public_api_v1_authentication_settings_get_metadata_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_asm_management_upload_asm_data(
+async def asm_management_upload_asm_data_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -5946,8 +5946,8 @@ Required license: **Cortex XSIAM Premium** or  Cortex XSIAM with ASM add-on
     ]
 
 
-# Schema for _public_api_v1_asm_management_upload_asm_data
-_public_api_v1_asm_management_upload_asm_data_schema = {
+# Schema for asm_management_upload_asm_data_v1
+asm_management_upload_asm_data_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -5957,7 +5957,7 @@ _public_api_v1_asm_management_upload_asm_data_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_assets_get_external_website(
+async def assets_get_external_website_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6011,8 +6011,8 @@ Required license: **Cortex XSIAM Premium** or  Cortex XSIAM with ASM Add-on
     ]
 
 
-# Schema for _public_api_v1_assets_get_external_website
-_public_api_v1_assets_get_external_website_schema = {
+# Schema for assets_get_external_website_v1
+assets_get_external_website_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6022,7 +6022,7 @@ _public_api_v1_assets_get_external_website_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_assets_get_external_websites(
+async def assets_get_external_websites_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6077,8 +6077,8 @@ Required license: **Cortex XSIAM Premium** or  Cortex XSIAM with ASM Add-on
     ]
 
 
-# Schema for _public_api_v1_assets_get_external_websites
-_public_api_v1_assets_get_external_websites_schema = {
+# Schema for assets_get_external_websites_v1
+assets_get_external_websites_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6088,7 +6088,7 @@ _public_api_v1_assets_get_external_websites_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_assets_get_external_websites_last_external_assessment(
+async def assets_get_external_websites_last_external_assessment_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6140,8 +6140,8 @@ async def _public_api_v1_assets_get_external_websites_last_external_assessment(
     ]
 
 
-# Schema for _public_api_v1_assets_get_external_websites_last_external_assessment
-_public_api_v1_assets_get_external_websites_last_external_assessment_schema = {
+# Schema for assets_get_external_websites_last_external_assessment_v1
+assets_get_external_websites_last_external_assessment_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6151,7 +6151,7 @@ _public_api_v1_assets_get_external_websites_last_external_assessment_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_integrations_syslog_create(
+async def integrations_syslog_create_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6205,8 +6205,8 @@ You must have **View/Edit Alert Notification** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_integrations_syslog_create
-_public_api_v1_integrations_syslog_create_schema = {
+# Schema for integrations_syslog_create_v1
+integrations_syslog_create_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6216,7 +6216,7 @@ _public_api_v1_integrations_syslog_create_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_integrations_syslog_get(
+async def integrations_syslog_get_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6270,8 +6270,8 @@ You must have **View Alert Notification** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_integrations_syslog_get
-_public_api_v1_integrations_syslog_get_schema = {
+# Schema for integrations_syslog_get_v1
+integrations_syslog_get_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6281,7 +6281,7 @@ _public_api_v1_integrations_syslog_get_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_integrations_syslog_update(
+async def integrations_syslog_update_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6335,8 +6335,8 @@ You must have **View/Edit Alert Notification** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_integrations_syslog_update
-_public_api_v1_integrations_syslog_update_schema = {
+# Schema for integrations_syslog_update_v1
+integrations_syslog_update_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6346,7 +6346,7 @@ _public_api_v1_integrations_syslog_update_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_integrations_syslog_delete(
+async def integrations_syslog_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6400,8 +6400,8 @@ You must have **View/Edit Alert Notification** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_integrations_syslog_delete
-_public_api_v1_integrations_syslog_delete_schema = {
+# Schema for integrations_syslog_delete_v1
+integrations_syslog_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6411,7 +6411,7 @@ _public_api_v1_integrations_syslog_delete_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_integrations_syslog_test(
+async def integrations_syslog_test_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6465,8 +6465,8 @@ You must have **View Alert Notification** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_integrations_syslog_test
-_public_api_v1_integrations_syslog_test_schema = {
+# Schema for integrations_syslog_test_v1
+integrations_syslog_test_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6476,7 +6476,7 @@ _public_api_v1_integrations_syslog_test_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_entries_insert(
+async def entries_insert_v1(
     authorization: str,
     x_xdr_auth_id: str,
     id: str | None = None,
@@ -6531,8 +6531,8 @@ async def _public_api_v1_entries_insert(
     ]
 
 
-# Schema for _public_api_v1_entries_insert
-_public_api_v1_entries_insert_schema = {
+# Schema for entries_insert_v1
+entries_insert_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6543,7 +6543,7 @@ _public_api_v1_entries_insert_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_entries_get(
+async def entries_get_v1(
     authorization: str,
     x_xdr_auth_id: str,
     id: str | None = None,
@@ -6599,8 +6599,8 @@ The response depends on what type of entry you choose to retrieve.
     ]
 
 
-# Schema for _public_api_v1_entries_get
-_public_api_v1_entries_get_schema = {
+# Schema for entries_get_v1
+entries_get_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6611,7 +6611,7 @@ _public_api_v1_entries_get_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_distributions_delete(
+async def distributions_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -6667,8 +6667,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM Enterprise** or **C
     ]
 
 
-# Schema for _public_api_v1_distributions_delete
-_public_api_v1_distributions_delete_schema = {
+# Schema for distributions_delete_v1
+distributions_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6678,7 +6678,7 @@ _public_api_v1_distributions_delete_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_asm_management_remove_asm_data(
+async def asm_management_remove_asm_data_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6739,8 +6739,8 @@ Required license: **Cortex XSIAM Premium** or **Cortex XSIAM with ASM add-on**
     ]
 
 
-# Schema for _public_api_v1_asm_management_remove_asm_data
-_public_api_v1_asm_management_remove_asm_data_schema = {
+# Schema for asm_management_remove_asm_data_v1
+asm_management_remove_asm_data_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api-key}"},
@@ -6750,7 +6750,7 @@ _public_api_v1_asm_management_remove_asm_data_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_scheduled_queries_list(
+async def scheduled_queries_list_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6804,8 +6804,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_scheduled_queries_list
-_public_api_v1_scheduled_queries_list_schema = {
+# Schema for scheduled_queries_list_v1
+scheduled_queries_list_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6815,7 +6815,7 @@ _public_api_v1_scheduled_queries_list_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_scheduled_queries_insert(
+async def scheduled_queries_insert_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: List[Any],
@@ -6869,8 +6869,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_scheduled_queries_insert
-_public_api_v1_scheduled_queries_insert_schema = {
+# Schema for scheduled_queries_insert_v1
+scheduled_queries_insert_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6880,7 +6880,7 @@ _public_api_v1_scheduled_queries_insert_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_scheduled_queries_delete(
+async def scheduled_queries_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: List[Any],
@@ -6934,8 +6934,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_scheduled_queries_delete
-_public_api_v1_scheduled_queries_delete_schema = {
+# Schema for scheduled_queries_delete_v1
+scheduled_queries_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -6945,7 +6945,7 @@ _public_api_v1_scheduled_queries_delete_schema = {
 }
 
 @server.call_tool()
-async def _public_api_xql_library_get(
+async def xql_library_get(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -6999,8 +6999,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_xql_library_get
-_public_api_xql_library_get_schema = {
+# Schema for xql_library_get
+xql_library_get_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7010,7 +7010,7 @@ _public_api_xql_library_get_schema = {
 }
 
 @server.call_tool()
-async def _public_api_xql_library_insert(
+async def xql_library_insert(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7066,8 +7066,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_xql_library_insert
-_public_api_xql_library_insert_schema = {
+# Schema for xql_library_insert
+xql_library_insert_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7077,7 +7077,7 @@ _public_api_xql_library_insert_schema = {
 }
 
 @server.call_tool()
-async def _public_api_xql_library_delete(
+async def xql_library_delete(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7131,8 +7131,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_xql_library_delete
-_public_api_xql_library_delete_schema = {
+# Schema for xql_library_delete
+xql_library_delete_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7142,7 +7142,7 @@ _public_api_xql_library_delete_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_indicators_get(
+async def indicators_get_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7202,8 +7202,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_indicators_get
-_public_api_v1_indicators_get_schema = {
+# Schema for indicators_get_v1
+indicators_get_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7213,7 +7213,7 @@ _public_api_v1_indicators_get_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_indicators_insert(
+async def indicators_insert_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: List[Any],
@@ -7269,8 +7269,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_indicators_insert
-_public_api_v1_indicators_insert_schema = {
+# Schema for indicators_insert_v1
+indicators_insert_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7280,7 +7280,7 @@ _public_api_v1_indicators_insert_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_indicators_delete(
+async def indicators_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7334,8 +7334,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_indicators_delete
-_public_api_v1_indicators_delete_schema = {
+# Schema for indicators_delete_v1
+indicators_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7345,7 +7345,7 @@ _public_api_v1_indicators_delete_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_bioc_get(
+async def bioc_get_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7402,8 +7402,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_bioc_get
-_public_api_v1_bioc_get_schema = {
+# Schema for bioc_get_v1
+bioc_get_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7413,7 +7413,7 @@ _public_api_v1_bioc_get_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_bioc_insert(
+async def bioc_insert_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: List[Any],
@@ -7469,8 +7469,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_bioc_insert
-_public_api_v1_bioc_insert_schema = {
+# Schema for bioc_insert_v1
+bioc_insert_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7480,7 +7480,7 @@ _public_api_v1_bioc_insert_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_bioc_delete(
+async def bioc_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7534,8 +7534,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_bioc_delete
-_public_api_v1_bioc_delete_schema = {
+# Schema for bioc_delete_v1
+bioc_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7545,7 +7545,7 @@ _public_api_v1_bioc_delete_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_correlations_get(
+async def correlations_get_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7603,8 +7603,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_correlations_get
-_public_api_v1_correlations_get_schema = {
+# Schema for correlations_get_v1
+correlations_get_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7614,7 +7614,7 @@ _public_api_v1_correlations_get_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_correlations_insert(
+async def correlations_insert_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: List[Any],
@@ -7670,8 +7670,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_correlations_insert
-_public_api_v1_correlations_insert_schema = {
+# Schema for correlations_insert_v1
+correlations_insert_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7681,7 +7681,7 @@ _public_api_v1_correlations_insert_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_correlations_delete(
+async def correlations_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7735,8 +7735,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_correlations_delete
-_public_api_v1_correlations_delete_schema = {
+# Schema for correlations_delete_v1
+correlations_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7746,7 +7746,7 @@ _public_api_v1_correlations_delete_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_playbooks_get(
+async def playbooks_get_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7800,8 +7800,8 @@ async def _public_api_v1_playbooks_get(
     ]
 
 
-# Schema for _public_api_v1_playbooks_get
-_public_api_v1_playbooks_get_schema = {
+# Schema for playbooks_get_v1
+playbooks_get_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7811,7 +7811,7 @@ _public_api_v1_playbooks_get_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_playbooks_insert(
+async def playbooks_insert_v1(
     authorization: str,
     x_xdr_auth_id: str,
 ) -> List[types.TextContent]:
@@ -7862,8 +7862,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_playbooks_insert
-_public_api_v1_playbooks_insert_schema = {
+# Schema for playbooks_insert_v1
+playbooks_insert_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7872,7 +7872,7 @@ _public_api_v1_playbooks_insert_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_playbooks_delete(
+async def playbooks_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7926,8 +7926,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_playbooks_delete
-_public_api_v1_playbooks_delete_schema = {
+# Schema for playbooks_delete_v1
+playbooks_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -7937,7 +7937,7 @@ _public_api_v1_playbooks_delete_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_scripts_get(
+async def scripts_get_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -7991,8 +7991,8 @@ async def _public_api_v1_scripts_get(
     ]
 
 
-# Schema for _public_api_v1_scripts_get
-_public_api_v1_scripts_get_schema = {
+# Schema for scripts_get_v1
+scripts_get_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -8002,7 +8002,7 @@ _public_api_v1_scripts_get_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_scripts_insert(
+async def scripts_insert_v1(
     authorization: str,
     x_xdr_auth_id: str,
 ) -> List[types.TextContent]:
@@ -8053,8 +8053,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_scripts_insert
-_public_api_v1_scripts_insert_schema = {
+# Schema for scripts_insert_v1
+scripts_insert_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -8063,7 +8063,7 @@ _public_api_v1_scripts_insert_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_scripts_delete(
+async def scripts_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -8117,8 +8117,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_scripts_delete
-_public_api_v1_scripts_delete_schema = {
+# Schema for scripts_delete_v1
+scripts_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -8128,7 +8128,7 @@ _public_api_v1_scripts_delete_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_dashboards_get(
+async def dashboards_get_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -8183,8 +8183,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_dashboards_get
-_public_api_v1_dashboards_get_schema = {
+# Schema for dashboards_get_v1
+dashboards_get_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -8194,7 +8194,7 @@ _public_api_v1_dashboards_get_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_dashboards_insert(
+async def dashboards_insert_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any] | None = None,
@@ -8248,8 +8248,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_dashboards_insert
-_public_api_v1_dashboards_insert_schema = {
+# Schema for dashboards_insert_v1
+dashboards_insert_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -8259,7 +8259,7 @@ _public_api_v1_dashboards_insert_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_dashboards_delete(
+async def dashboards_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -8313,8 +8313,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_dashboards_delete
-_public_api_v1_dashboards_delete_schema = {
+# Schema for dashboards_delete_v1
+dashboards_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -8324,7 +8324,7 @@ _public_api_v1_dashboards_delete_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_widgets_get(
+async def widgets_get_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -8380,8 +8380,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_widgets_get
-_public_api_v1_widgets_get_schema = {
+# Schema for widgets_get_v1
+widgets_get_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -8391,7 +8391,7 @@ _public_api_v1_widgets_get_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_widgets_insert(
+async def widgets_insert_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: List[Any] | None = None,
@@ -8445,8 +8445,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_widgets_insert
-_public_api_v1_widgets_insert_schema = {
+# Schema for widgets_insert_v1
+widgets_insert_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},
@@ -8456,7 +8456,7 @@ _public_api_v1_widgets_insert_schema = {
 }
 
 @server.call_tool()
-async def _public_api_v1_widgets_delete(
+async def widgets_delete_v1(
     authorization: str,
     x_xdr_auth_id: str,
     request_data: Dict[str, Any],
@@ -8510,8 +8510,8 @@ You must have **Instance Administrator** permissions to run this endpoint.
     ]
 
 
-# Schema for _public_api_v1_widgets_delete
-_public_api_v1_widgets_delete_schema = {
+# Schema for widgets_delete_v1
+widgets_delete_v1_schema = {
     "type": "object",
     "properties": {
         "authorization": {"type": "str", "description": "{api_key}"},

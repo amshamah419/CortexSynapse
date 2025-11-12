@@ -128,7 +128,7 @@ python -m server.main
 - `get_incident_extra_data` - Get detailed incident information
 
 **Alert Operations**:
-- `_public_api_v1_alerts_get_alerts` - Retrieve security alerts
+- `alerts_get_alerts_v1` - Retrieve security alerts
 - `update_alerts` - Update alert status
 - `get_alerts_multi_events` - Get alerts with event correlation
 

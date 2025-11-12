@@ -50,6 +50,42 @@ def strip_http_verb_prefix(name: str, http_method: str = "") -> str:
     return name
 
 
+def clean_public_api_name(name: str) -> str:
+    """
+    Clean up public_api names by removing the public_api prefix and moving version to end.
+
+    For example:
+        public_api-v1-alerts-get_alerts -> alerts-get_alerts-v1
+        -public_api-v1-alerts-get_alerts -> alerts-get_alerts-v1 (leading hyphen handled)
+        public_api-v2-alerts-get_alerts_multi_events -> alerts-get_alerts_multi_events-v2
+
+    Args:
+        name: The name to clean (with hyphens, before snake_case conversion)
+
+    Returns:
+        The cleaned name with version moved to end
+    """
+    # Remove leading hyphens or underscores
+    name = name.lstrip("-_")
+
+    # Check if this is a public_api name
+    if not name.startswith("public_api-"):
+        return name
+
+    # Remove public_api- prefix
+    name = name[len("public_api-") :]
+
+    # Extract version (v1, v2, etc.) if present
+    version_match = re.match(r"^(v\d+)-(.*)", name)
+    if version_match:
+        version = version_match.group(1)
+        rest = version_match.group(2)
+        # Move version to the end
+        return f"{rest}-{version}"
+
+    return name
+
+
 def to_snake_case(name: str, http_method: str = "") -> str:
     """
     Convert camelCase or PascalCase to snake_case and handle hyphens.
@@ -63,6 +99,8 @@ def to_snake_case(name: str, http_method: str = "") -> str:
     """
     # Strip HTTP verb prefix if it matches the method
     name = strip_http_verb_prefix(name, http_method)
+    # Clean up public_api names before converting to snake_case
+    name = clean_public_api_name(name)
     # Replace hyphens with underscores first
     name = name.replace("-", "_")
     # Insert underscore before uppercase letters and convert to lowercase

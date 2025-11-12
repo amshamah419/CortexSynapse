@@ -9,6 +9,7 @@ from codegen.generator import (
     generate_tools_file,
     to_snake_case,
     strip_http_verb_prefix,
+    clean_public_api_name,
     get_parameter_type,
     generate_parameter_schema,
 )
@@ -58,6 +59,32 @@ def test_strip_http_verb_prefix():
     assert strip_http_verb_prefix("getIncidents", "") == "getIncidents"
 
 
+def test_clean_public_api_name():
+    """Test cleaning public_api names by moving version to end."""
+    # Test v1 API
+    assert clean_public_api_name("public_api-v1-alerts-get_alerts") == "alerts-get_alerts-v1"
+
+    # Test v2 API
+    assert (
+        clean_public_api_name("public_api-v2-alerts-get_alerts_multi_events")
+        == "alerts-get_alerts_multi_events-v2"
+    )
+
+    # Test with leading hyphen (from HTTP verb stripping)
+    assert clean_public_api_name("-public_api-v1-alerts-get_alerts") == "alerts-get_alerts-v1"
+    assert (
+        clean_public_api_name("-public_api-v2-alerts-get_alerts_multi_events")
+        == "alerts-get_alerts_multi_events-v2"
+    )
+
+    # Test non-public_api names (should remain unchanged)
+    assert clean_public_api_name("startXqlQuery") == "startXqlQuery"
+    assert clean_public_api_name("getIncidents") == "getIncidents"
+
+    # Test public_api without version (edge case)
+    assert clean_public_api_name("public_api-alerts-get_alerts") == "alerts-get_alerts"
+
+
 def test_to_snake_case():
     """Test snake_case conversion."""
     # Basic conversions without HTTP method
@@ -71,6 +98,13 @@ def test_to_snake_case():
     assert to_snake_case("getIncidents", "get") == "incidents"
     assert to_snake_case("postUpdateIncident", "post") == "update_incident"
     assert to_snake_case("deleteWidget", "delete") == "widget"
+
+    # Test public_api name cleaning
+    assert to_snake_case("public_api-v1-alerts-get_alerts", "post") == "alerts_get_alerts_v1"
+    assert (
+        to_snake_case("public_api-v2-alerts-get_alerts_multi_events", "post")
+        == "alerts_get_alerts_multi_events_v2"
+    )
 
     # Test with HTTP method not matching (should not strip)
     assert to_snake_case("getAutomationScripts", "post") == "get_automation_scripts"
