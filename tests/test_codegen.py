@@ -53,12 +53,13 @@ def test_generate_parameter_schema():
     param_defs, schema_props = generate_parameter_schema(parameters)
 
     assert len(param_defs) == 2
-    assert "limit: int | None = None," in param_defs[0]
-    assert "status: str," in param_defs[1]
+    # Required params come first now
+    assert "status: str," in param_defs[0]
+    assert "limit: int | None = None," in param_defs[1]
 
     assert len(schema_props) == 2
-    assert '"limit"' in schema_props[0]
-    assert '"status"' in schema_props[1]
+    assert '"limit"' in schema_props[0] or '"limit"' in schema_props[1]
+    assert '"status"' in schema_props[0] or '"status"' in schema_props[1]
 
 
 def test_generate_tools_file():

@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
 Code generator that reads OpenAPI specs and generates MCP tools.
-Reads specs/*.yaml and writes server/generated_*_tools.py with snake_case tool names.
+Reads specs/*.yaml and specs/*.json and writes server/generated_*_tools.py with snake_case tool names.
 """
 
+import json
 import re
 from pathlib import Path
 from typing import Any, Dict, List
@@ -12,10 +13,26 @@ import yaml
 
 
 def to_snake_case(name: str) -> str:
-    """Convert camelCase or PascalCase to snake_case."""
+    """Convert camelCase or PascalCase to snake_case and handle hyphens."""
+    # Replace hyphens with underscores first
+    name = name.replace("-", "_")
     # Insert underscore before uppercase letters and convert to lowercase
     s1 = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", name)
     return re.sub("([a-z0-9])([A-Z])", r"\1_\2", s1).lower()
+
+
+def clean_description(description: str) -> str:
+    """Clean and escape description text for use in Python strings."""
+    if not description:
+        return ""
+    # Replace newlines with spaces
+    description = description.replace("\n", " ").replace("\r", " ")
+    # Replace multiple spaces with single space
+    description = re.sub(r"\s+", " ", description)
+    # Escape quotes
+    description = description.replace('"', '\\"')
+    # Trim
+    return description.strip()
 
 
 def get_parameter_type(param_schema: Dict[str, Any]) -> str:
@@ -36,21 +53,28 @@ def generate_parameter_schema(
     parameters: List[Dict[str, Any]], request_body: Dict[str, Any] | None = None
 ) -> tuple[List[str], List[str]]:
     """Generate parameter definitions and schema properties."""
-    param_defs = []
+    required_param_defs = []
+    optional_param_defs = []
     schema_props = []
 
-    # Process query and path parameters
+    # Process query, path, and header parameters (skip body/formData - handled differently)
     for param in parameters:
+        param_in = param.get("in", "query")
+        if param_in in ["body", "formData"]:
+            # Body and formData parameters are handled differently
+            # For OpenAPI 2.0 compatibility, skip them here
+            continue
+
         param_name = to_snake_case(param["name"])
         param_type = get_parameter_type(param.get("schema", {}))
         required = param.get("required", False)
-        description = param.get("description", "")
+        description = clean_description(param.get("description", ""))
 
-        # Add parameter definition
+        # Add parameter definition - separate required from optional
         if required:
-            param_defs.append(f"    {param_name}: {param_type},")
+            required_param_defs.append(f"    {param_name}: {param_type},")
         else:
-            param_defs.append(f"    {param_name}: {param_type} | None = None,")
+            optional_param_defs.append(f"    {param_name}: {param_type} | None = None,")
 
         # Add to schema
         schema_props.append(
@@ -70,17 +94,20 @@ def generate_parameter_schema(
             for prop_name, prop_schema in properties.items():
                 snake_prop = to_snake_case(prop_name)
                 prop_type = get_parameter_type(prop_schema)
-                prop_desc = prop_schema.get("description", "")
+                prop_desc = clean_description(prop_schema.get("description", ""))
                 is_required = prop_name in required_props
 
                 if is_required:
-                    param_defs.append(f"    {snake_prop}: {prop_type},")
+                    required_param_defs.append(f"    {snake_prop}: {prop_type},")
                 else:
-                    param_defs.append(f"    {snake_prop}: {prop_type} | None = None,")
+                    optional_param_defs.append(f"    {snake_prop}: {prop_type} | None = None,")
 
                 schema_props.append(
                     f'        "{snake_prop}": {{"type": "{prop_type}", "description": "{prop_desc}"}},'
                 )
+
+    # Combine required params first, then optional (Python requirement)
+    param_defs = required_param_defs + optional_param_defs
 
     return param_defs, schema_props
 
@@ -128,6 +155,7 @@ async def {tool_name}(
     params = {{}}
     body = {{}}
     path_params = {{}}
+    headers = {{}}
     
 '''
 
@@ -137,6 +165,10 @@ async def {tool_name}(
         original_name = param["name"]
         param_in = param.get("in", "query")
 
+        # Skip body and formData parameters - they're handled differently
+        if param_in in ["body", "formData"]:
+            continue
+
         function_code += f"""    if {param_name} is not None:
 """
         if param_in == "path":
@@ -144,6 +176,9 @@ async def {tool_name}(
 """
         elif param_in == "query":
             function_code += f"""        params["{original_name}"] = {param_name}
+"""
+        elif param_in == "header":
+            function_code += f"""        headers["{original_name}"] = {param_name}
 """
 
     # Add request body building logic
@@ -173,6 +208,7 @@ async def {tool_name}(
             method="{method.upper()}",
             url=url,
             params=params,
+            headers=headers,
             json=body if body else None,
         )
         response.raise_for_status()
@@ -200,10 +236,18 @@ async def {tool_name}(
 
 def generate_tools_file(spec_path: Path, output_dir: Path) -> None:
     """Generate a tools file from an OpenAPI spec."""
-    with open(spec_path, "r") as f:
-        spec = yaml.safe_load(f)
+    # Load the spec based on file extension
+    if spec_path.suffix.lower() in [".json"]:
+        with open(spec_path, "r") as f:
+            spec = json.load(f)
+    elif spec_path.suffix.lower() in [".yaml", ".yml"]:
+        with open(spec_path, "r") as f:
+            spec = yaml.safe_load(f)
+    else:
+        print(f"Unsupported file format: {spec_path.suffix}")
+        return
 
-    # Extract spec name from filename
+    # Extract spec name from filename (without extension)
     spec_name = spec_path.stem
     output_file = output_dir / f"generated_{spec_name}_tools.py"
 
@@ -223,7 +267,6 @@ from typing import Any, Dict, List
 
 import httpx
 from mcp.server import Server
-from mcp.types import Tool
 from mcp import types
 
 # This will be set by the server initialization
@@ -269,8 +312,12 @@ def main() -> None:
     # Create output directory if it doesn't exist
     output_dir.mkdir(exist_ok=True)
 
-    # Process all YAML specs
-    spec_files = list(specs_dir.glob("*.yaml")) + list(specs_dir.glob("*.yml"))
+    # Process all YAML and JSON specs
+    spec_files = (
+        list(specs_dir.glob("*.yaml"))
+        + list(specs_dir.glob("*.yml"))
+        + list(specs_dir.glob("*.json"))
+    )
 
     if not spec_files:
         print("No OpenAPI specs found in specs/ directory")
