@@ -140,7 +140,7 @@ def test_generate_parameter_schema():
         },
     ]
 
-    param_defs, schema_props = generate_parameter_schema(parameters)
+    param_defs, schema_props, param_info = generate_parameter_schema(parameters)
 
     assert len(param_defs) == 2
     # Required params come first now
@@ -150,6 +150,11 @@ def test_generate_parameter_schema():
     assert len(schema_props) == 2
     assert '"limit"' in schema_props[0] or '"limit"' in schema_props[1]
     assert '"status"' in schema_props[0] or '"status"' in schema_props[1]
+
+    # Check param_info
+    assert len(param_info) == 2
+    assert any(p["name"] == "limit" and not p["required"] for p in param_info)
+    assert any(p["name"] == "status" and p["required"] for p in param_info)
 
 
 def test_generate_tools_file():
@@ -202,3 +207,87 @@ def test_generate_tools_file():
         assert "limit: int | None = None" in content
         assert "async def test_list_items" in content
         assert "@server.call_tool()" in content
+
+        # Check that the docstring has detailed parameter documentation
+        assert "Args:" in content
+        assert "limit (int): Max items (optional)" in content
+        assert "Returns:" in content
+
+
+def test_docstring_parameter_documentation():
+    """Test that generated functions have detailed parameter documentation in docstrings."""
+    # Create a spec with multiple parameter types
+    spec = {
+        "openapi": "3.0.0",
+        "info": {"title": "Test API", "version": "1.0.0"},
+        "servers": [{"url": "https://api.test.com"}],
+        "paths": {
+            "/users/{user_id}": {
+                "post": {
+                    "operationId": "updateUser",
+                    "summary": "Update a user",
+                    "description": "Updates user information",
+                    "parameters": [
+                        {
+                            "name": "user_id",
+                            "in": "path",
+                            "required": True,
+                            "schema": {"type": "string"},
+                            "description": "The user ID",
+                        },
+                        {
+                            "name": "notify",
+                            "in": "query",
+                            "required": False,
+                            "schema": {"type": "boolean"},
+                            "description": "Send notification",
+                        },
+                    ],
+                    "requestBody": {
+                        "required": True,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "required": ["name"],
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "User's full name",
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "description": "User's email address",
+                                        },
+                                    },
+                                }
+                            }
+                        },
+                    },
+                    "responses": {"200": {"description": "User updated successfully"}},
+                }
+            }
+        },
+    }
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        spec_path = Path(tmpdir) / "test.yaml"
+        output_dir = Path(tmpdir) / "output"
+        output_dir.mkdir()
+
+        with open(spec_path, "w") as f:
+            yaml.dump(spec, f)
+
+        generate_tools_file(spec_path, output_dir)
+
+        output_file = output_dir / "generated_test_tools.py"
+        content = output_file.read_text()
+
+        # Verify all parameters are documented in the docstring
+        assert "user_id (str): The user ID (required)" in content
+        assert "notify (bool): Send notification (optional)" in content
+        assert "name (str): User's full name (required)" in content
+        assert "email (str): User's email address (optional)" in content
+
+        # Verify return documentation includes response description
+        assert "User updated successfully" in content

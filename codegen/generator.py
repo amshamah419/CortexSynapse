@@ -138,11 +138,12 @@ def get_parameter_type(param_schema: Dict[str, Any]) -> str:
 
 def generate_parameter_schema(
     parameters: List[Dict[str, Any]], request_body: Dict[str, Any] | None = None
-) -> tuple[List[str], List[str]]:
-    """Generate parameter definitions and schema properties."""
+) -> tuple[List[str], List[str], List[Dict[str, Any]]]:
+    """Generate parameter definitions, schema properties, and parameter info for documentation."""
     required_param_defs = []
     optional_param_defs = []
     schema_props = []
+    param_info = []  # For docstring generation
 
     # Process query, path, and header parameters (skip body/formData - handled differently)
     for param in parameters:
@@ -166,6 +167,17 @@ def generate_parameter_schema(
         # Add to schema
         schema_props.append(
             f'        "{param_name}": {{"type": "{param_type}", "description": "{description}"}},'
+        )
+
+        # Add to param_info for docstring
+        param_info.append(
+            {
+                "name": param_name,
+                "type": param_type,
+                "required": required,
+                "description": description if description else "No description provided",
+                "location": param_in,
+            }
         )
 
     # Process request body if present
@@ -193,10 +205,21 @@ def generate_parameter_schema(
                     f'        "{snake_prop}": {{"type": "{prop_type}", "description": "{prop_desc}"}},'
                 )
 
+                # Add to param_info for docstring
+                param_info.append(
+                    {
+                        "name": snake_prop,
+                        "type": prop_type,
+                        "required": is_required,
+                        "description": prop_desc if prop_desc else "No description provided",
+                        "location": "body",
+                    }
+                )
+
     # Combine required params first, then optional (Python requirement)
     param_defs = required_param_defs + optional_param_defs
 
-    return param_defs, schema_props
+    return param_defs, schema_props, param_info
 
 
 def generate_tool_function(
@@ -219,13 +242,32 @@ def generate_tool_function(
     parameters = operation.get("parameters", [])
     request_body = operation.get("requestBody")
 
-    param_defs, schema_props = generate_parameter_schema(parameters, request_body)
+    param_defs, schema_props, param_info = generate_parameter_schema(parameters, request_body)
 
     # Build function signature
     param_str = "\n".join(param_defs) if param_defs else ""
 
     # Build schema properties
     schema_str = "\n".join(schema_props) if schema_props else ""
+
+    # Build parameter documentation for docstring
+    param_doc_lines = []
+    if param_info:
+        for param in param_info:
+            required_str = "(required)" if param["required"] else "(optional)"
+            # Format: param_name (type): description [required/optional]
+            param_doc_lines.append(
+                f"        {param['name']} ({param['type']}): {param['description']} {required_str}"
+            )
+
+    param_doc = "\n".join(param_doc_lines) if param_doc_lines else "        No parameters required"
+
+    # Get response information from OpenAPI spec
+    responses = operation.get("responses", {})
+    success_response = responses.get("200") or responses.get("201") or responses.get("204")
+    response_desc = "API response data"
+    if success_response:
+        response_desc = success_response.get("description", response_desc)
 
     # Build the function
     function_code = f'''
@@ -237,10 +279,10 @@ async def {tool_name}(
     {description}
     
     Args:
-        Tool arguments are defined in the schema below
+{param_doc}
     
     Returns:
-        List of text content with the API response
+        List[types.TextContent]: {response_desc}
     """
     # Build request parameters
     params = {{}}
