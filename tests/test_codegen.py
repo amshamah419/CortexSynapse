@@ -291,3 +291,96 @@ def test_docstring_parameter_documentation():
 
         # Verify return documentation includes response description
         assert "User updated successfully" in content
+
+
+def test_request_data_expansion():
+    """Test that request_data wrapper is properly expanded into individual parameters."""
+    # Create a spec with request_data wrapper pattern (like XSIAM update_incident)
+    spec = {
+        "openapi": "3.0.0",
+        "info": {"title": "Test API", "version": "1.0.0"},
+        "servers": [{"url": "https://api.test.com"}],
+        "paths": {
+            "/incidents/update": {
+                "post": {
+                    "operationId": "updateIncident",
+                    "summary": "Update an incident",
+                    "description": "Updates incident information",
+                    "parameters": [
+                        {
+                            "name": "Authorization",
+                            "in": "header",
+                            "required": True,
+                            "schema": {"type": "string"},
+                            "description": "API key",
+                        }
+                    ],
+                    "requestBody": {
+                        "required": True,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "request_data": {
+                                            "type": "object",
+                                            "required": ["incident_id", "update_data"],
+                                            "properties": {
+                                                "incident_id": {
+                                                    "type": "string",
+                                                    "description": "The incident ID",
+                                                },
+                                                "update_data": {
+                                                    "type": "object",
+                                                    "description": "Data to update",
+                                                },
+                                                "optional_field": {
+                                                    "type": "string",
+                                                    "description": "Optional field",
+                                                },
+                                            },
+                                        }
+                                    },
+                                }
+                            }
+                        },
+                    },
+                    "responses": {"200": {"description": "Success"}},
+                }
+            }
+        },
+    }
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        spec_path = Path(tmpdir) / "test.yaml"
+        output_dir = Path(tmpdir) / "output"
+        output_dir.mkdir()
+
+        with open(spec_path, "w") as f:
+            yaml.dump(spec, f)
+
+        generate_tools_file(spec_path, output_dir)
+
+        output_file = output_dir / "generated_test_tools.py"
+        content = output_file.read_text()
+
+        # Verify that request_data is NOT a parameter
+        assert "request_data: Dict[str, Any]" not in content
+        assert "request_data (Dict[str, Any])" not in content
+
+        # Verify that nested properties ARE parameters
+        assert "incident_id: str," in content
+        assert "update_data: Dict[str, Any]," in content
+        assert "optional_field: str | None = None," in content
+
+        # Verify documentation shows required/optional correctly
+        assert "incident_id (str): The incident ID (required)" in content
+        assert "update_data (Dict[str, Any]): Data to update (required)" in content
+        assert "optional_field (str): Optional field (optional)" in content
+
+        # Verify the body building code wraps parameters back into request_data
+        assert "request_data_obj = {}" in content
+        assert 'request_data_obj["incident_id"] = incident_id' in content
+        assert 'request_data_obj["update_data"] = update_data' in content
+        assert 'request_data_obj["optional_field"] = optional_field' in content
+        assert 'body["request_data"] = request_data_obj' in content

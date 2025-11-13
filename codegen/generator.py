@@ -190,31 +190,70 @@ def generate_parameter_schema(
             properties = body_schema.get("properties", {})
             required_props = body_schema.get("required", [])
 
-            for prop_name, prop_schema in properties.items():
-                snake_prop = to_snake_case(prop_name)
-                prop_type = get_parameter_type(prop_schema)
-                prop_desc = clean_description(prop_schema.get("description", ""))
-                is_required = prop_name in required_props
+            # Check if this is a request_data wrapper pattern
+            # If there's only one property named "request_data" that is an object,
+            # expand its nested properties instead
+            if (
+                len(properties) == 1
+                and "request_data" in properties
+                and properties["request_data"].get("type") == "object"
+            ):
+                request_data_schema = properties["request_data"]
+                nested_properties = request_data_schema.get("properties", {})
+                nested_required = request_data_schema.get("required", [])
 
-                if is_required:
-                    required_param_defs.append(f"    {snake_prop}: {prop_type},")
-                else:
-                    optional_param_defs.append(f"    {snake_prop}: {prop_type} | None = None,")
+                for prop_name, prop_schema in nested_properties.items():
+                    snake_prop = to_snake_case(prop_name)
+                    prop_type = get_parameter_type(prop_schema)
+                    prop_desc = clean_description(prop_schema.get("description", ""))
+                    is_required = prop_name in nested_required
 
-                schema_props.append(
-                    f'        "{snake_prop}": {{"type": "{prop_type}", "description": "{prop_desc}"}},'
-                )
+                    if is_required:
+                        required_param_defs.append(f"    {snake_prop}: {prop_type},")
+                    else:
+                        optional_param_defs.append(f"    {snake_prop}: {prop_type} | None = None,")
 
-                # Add to param_info for docstring
-                param_info.append(
-                    {
-                        "name": snake_prop,
-                        "type": prop_type,
-                        "required": is_required,
-                        "description": prop_desc if prop_desc else "No description provided",
-                        "location": "body",
-                    }
-                )
+                    schema_props.append(
+                        f'        "{snake_prop}": {{"type": "{prop_type}", "description": "{prop_desc}"}},'
+                    )
+
+                    # Add to param_info for docstring
+                    param_info.append(
+                        {
+                            "name": snake_prop,
+                            "type": prop_type,
+                            "required": is_required,
+                            "description": prop_desc if prop_desc else "No description provided",
+                            "location": "body",
+                        }
+                    )
+            else:
+                # Regular request body processing (no request_data wrapper)
+                for prop_name, prop_schema in properties.items():
+                    snake_prop = to_snake_case(prop_name)
+                    prop_type = get_parameter_type(prop_schema)
+                    prop_desc = clean_description(prop_schema.get("description", ""))
+                    is_required = prop_name in required_props
+
+                    if is_required:
+                        required_param_defs.append(f"    {snake_prop}: {prop_type},")
+                    else:
+                        optional_param_defs.append(f"    {snake_prop}: {prop_type} | None = None,")
+
+                    schema_props.append(
+                        f'        "{snake_prop}": {{"type": "{prop_type}", "description": "{prop_desc}"}},'
+                    )
+
+                    # Add to param_info for docstring
+                    param_info.append(
+                        {
+                            "name": snake_prop,
+                            "type": prop_type,
+                            "required": is_required,
+                            "description": prop_desc if prop_desc else "No description provided",
+                            "location": "body",
+                        }
+                    )
 
     # Combine required params first, then optional (Python requirement)
     param_defs = required_param_defs + optional_param_defs
@@ -332,9 +371,34 @@ async def {tool_name}(
 
         if body_schema:
             properties = body_schema.get("properties", {})
-            for prop_name in properties.keys():
-                snake_prop = to_snake_case(prop_name)
-                function_code += f"""    if {snake_prop} is not None:
+
+            # Check if this is a request_data wrapper pattern
+            if (
+                len(properties) == 1
+                and "request_data" in properties
+                and properties["request_data"].get("type") == "object"
+            ):
+                # Expand request_data properties
+                request_data_schema = properties["request_data"]
+                nested_properties = request_data_schema.get("properties", {})
+
+                # Build the request_data object from expanded parameters
+                function_code += """    # Build request_data object from parameters
+    request_data_obj = {}
+"""
+                for prop_name in nested_properties.keys():
+                    snake_prop = to_snake_case(prop_name)
+                    function_code += f"""    if {snake_prop} is not None:
+        request_data_obj["{prop_name}"] = {snake_prop}
+"""
+                function_code += """    if request_data_obj:
+        body["request_data"] = request_data_obj
+"""
+            else:
+                # Regular request body processing (no request_data wrapper)
+                for prop_name in properties.keys():
+                    snake_prop = to_snake_case(prop_name)
+                    function_code += f"""    if {snake_prop} is not None:
         body["{prop_name}"] = {snake_prop}
 """
 
