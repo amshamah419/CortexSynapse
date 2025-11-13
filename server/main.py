@@ -42,7 +42,7 @@ def load_generated_tools(server: Server) -> None:
 
 async def run_server() -> None:
     """Run the MCP server."""
-    server = Server("cortex-mcp")
+    server = Server("cortexsynapse")
 
     # Load all generated tools
     load_generated_tools(server)
