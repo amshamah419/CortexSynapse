@@ -2,7 +2,7 @@
 
 ## Overview
 
-Cortex-MCP takes security seriously. This document outlines our security practices, how to report vulnerabilities, and security guidelines for users.
+CortexSynapse takes security seriously. This document outlines our security practices, how to report vulnerabilities, and security guidelines for users.
 
 ## Supported Versions
 
@@ -112,7 +112,7 @@ RATE_LIMIT_WINDOW=60
   "mcpServers": {
     "cortex": {
       "command": "docker",
-      "args": ["run", "-i", "--read-only", "--security-opt=no-new-privileges", "cortex-mcp"],
+      "args": ["run", "-i", "--read-only", "--security-opt=no-new-privileges", "cortexsynapse"],
       "env": {
         "XSOAR_API_URL": "${XSOAR_API_URL}",
         "XSOAR_API_KEY": "${XSOAR_API_KEY}",
@@ -149,7 +149,7 @@ docker run -i \
   --read-only \
   --security-opt=no-new-privileges \
   --cap-drop=ALL \
-  cortex-mcp
+  cortexsynapse
 ```
 
 **Explanation:**

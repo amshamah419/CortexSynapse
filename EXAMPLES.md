@@ -1,10 +1,10 @@
 # AI-Assisted XSOAR/XSIAM Development Examples
 
-This document provides practical examples of using Cortex-MCP with AI-powered IDEs for XSOAR and XSIAM development workflows.
+This document provides practical examples of using CortexSynapse with AI-powered IDEs for XSOAR and XSIAM development workflows.
 
 ## Prerequisites
 
-- Cortex-MCP container running and configured in your AI IDE (Windsurf, Cursor, Roo Code, etc.)
+- CortexSynapse container running and configured in your AI IDE (Windsurf, Cursor, Roo Code, etc.)
 - Active XSOAR and/or XSIAM instance with API credentials
 - AI IDE with MCP support enabled
 
@@ -220,7 +220,7 @@ In `.windsurf/mcp.json`:
   "mcpServers": {
     "cortex-dev": {
       "command": "docker",
-      "args": ["run", "-i", "--rm", "cortex-mcp"],
+      "args": ["run", "-i", "--rm", "cortexsynapse"],
       "env": {
         "XSOAR_API_URL": "https://xsoar-dev.company.com",
         "XSOAR_API_KEY": "${XSOAR_DEV_KEY}",
@@ -240,7 +240,7 @@ In Cursor settings (Settings → Features → MCP):
 {
   "cortex": {
     "command": "docker",
-    "args": ["run", "-i", "cortex-mcp"],
+    "args": ["run", "-i", "cortexsynapse"],
     "env": {
       "XSOAR_API_URL": "https://your-instance.xsoar.com",
       "XSOAR_API_KEY": "your-api-key"
@@ -412,20 +412,20 @@ async def get_incident(
 ### Build the Image
 
 ```bash
-docker build -t cortex-mcp .
+docker build -t cortexsynapse .
 ```
 
 ### Run the Container
 
 ```bash
-docker run -i cortex-mcp
+docker run -i cortexsynapse
 ```
 
 ### Push to Registry
 
 ```bash
-docker tag cortex-mcp ghcr.io/your-username/cortex-mcp:latest
-docker push ghcr.io/your-username/cortex-mcp:latest
+docker tag cortexsynapse ghcr.io/your-username/cortexsynapse:latest
+docker push ghcr.io/your-username/cortexsynapse:latest
 ```
 
 ## Development Workflow
@@ -589,7 +589,7 @@ return [
 ## Example Project Structure
 
 ```
-my-cortex-mcp/
+my-cortexsynapse/
 ├── specs/
 │   ├── xsiam.yaml          # Production XSIAM spec
 │   ├── xsoar.yaml          # Production XSOAR spec

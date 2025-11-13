@@ -1,15 +1,15 @@
-# Cortex-MCP
+# CortexSynapse
 
 [![CI/CD Pipeline](https://github.com/amshamah419/Cortex-MCP/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/amshamah419/Cortex-MCP/actions/workflows/ci-cd.yml)
 [![CodeQL](https://github.com/amshamah419/Cortex-MCP/actions/workflows/ci-cd.yml/badge.svg?job=codeql-analysis)](https://github.com/amshamah419/Cortex-MCP/security/code-scanning)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![Docker](https://img.shields.io/badge/docker-ghcr.io-blue.svg)](https://github.com/amshamah419/Cortex-MCP/pkgs/container/cortex-mcp)
+[![Docker](https://img.shields.io/badge/docker-ghcr.io-blue.svg)](https://github.com/amshamah419/Cortex-MCP/pkgs/container/cortexsynapse)
 
 A robust MCP (Model Context Protocol) server that enables AI-powered IDEs and agents to interact with live XSOAR/XSIAM instances for development, testing, and automation tasks.
 
 ## Overview
 
-Cortex-MCP bridges the gap between AI development tools (Windsurf, Roo Code, Cursor, etc.) and Palo Alto Cortex platforms (XSOAR/XSIAM). It provides a containerized MCP server that exposes XSOAR and XSIAM APIs as tools that AI agents can use to help developers build, test, and verify security automation workflows.
+CortexSynapse bridges the gap between AI development tools (Windsurf, Roo Code, Cursor, etc.) and Palo Alto Cortex platforms (XSOAR/XSIAM). It provides a containerized MCP server that exposes XSOAR and XSIAM APIs as tools that AI agents can use to help developers build, test, and verify security automation workflows.
 
 **Primary Use Case**: Enable developers to use natural language with AI assistants to perform common XSOAR/XSIAM development tasks such as:
 - Creating and testing playbooks
@@ -19,9 +19,9 @@ Cortex-MCP bridges the gap between AI development tools (Windsurf, Roo Code, Cur
 - Building and deploying custom content
 - Debugging security workflows
 
-## Why Cortex-MCP?
+## Why CortexSynapse?
 
-As a developer working with XSOAR and XSIAM, you need to frequently interact with these platforms to build, test, and verify security automation. Cortex-MCP allows you to:
+As a developer working with XSOAR and XSIAM, you need to frequently interact with these platforms to build, test, and verify security automation. CortexSynapse allows you to:
 
 - **Use AI assistants for XSOAR/XSIAM development** - Tell your AI IDE to "create a playbook for phishing investigation" or "query recent high-severity incidents"
 - **Accelerate development workflows** - Build and test automations faster with AI assistance
@@ -67,7 +67,7 @@ As a developer working with XSOAR and XSIAM, you need to frequently interact wit
 
 ## Security
 
-🔒 Cortex-MCP implements enterprise-grade security controls. See [SECURITY.md](SECURITY.md) for detailed security documentation.
+🔒 CortexSynapse implements enterprise-grade security controls. See [SECURITY.md](SECURITY.md) for detailed security documentation.
 
 **Key Security Features:**
 - ✅ Input validation and sanitization
@@ -85,7 +85,7 @@ As a developer working with XSOAR and XSIAM, you need to frequently interact wit
 
 1. **Build the Docker container**:
 ```bash
-docker build -t cortex-mcp .
+docker build -t cortexsynapse .
 ```
 
 2. **Set up environment variables** (recommended for security):
@@ -111,7 +111,7 @@ Add to your MCP settings (typically in `.windsurf/mcp.json`, `.cursor/mcp.json`,
         "-i", 
         "--read-only",
         "--security-opt=no-new-privileges",
-        "cortex-mcp"
+        "cortexsynapse"
       ],
       "env": {
         "XSOAR_API_URL": "${XSOAR_API_URL}",
@@ -229,7 +229,7 @@ python -m codegen.generator
 
 3. Rebuild the container:
 ```bash
-docker build -t cortex-mcp .
+docker build -t cortexsynapse .
 ```
 
 The generator supports both YAML and JSON OpenAPI specifications and automatically converts operation IDs to snake_case function names.
@@ -282,7 +282,7 @@ async def list_incidents(
 ### MCP Server Flow
 
 ```
-AI IDE/Agent → MCP Protocol → Cortex-MCP Server → XSOAR/XSIAM API
+AI IDE/Agent → MCP Protocol → CortexSynapse Server → XSOAR/XSIAM API
      ↑                              ↓
      └──────── Natural Language ←────┘
 ```
@@ -328,7 +328,7 @@ Development dependencies (for extending tools):
 
 **MCP server not connecting:**
 - Ensure Docker is running
-- Check that the container starts successfully: `docker run -i cortex-mcp`
+- Check that the container starts successfully: `docker run -i cortexsynapse`
 - Verify environment variables are set correctly in your IDE's MCP configuration
 
 **API authentication failures:**
@@ -359,12 +359,12 @@ pip install -e ".[dev]"
 ls -la specs/ codegen/ server/
 
 # Try building with verbose output
-docker build -t cortex-mcp . --progress=plain
+docker build -t cortexsynapse . --progress=plain
 ```
 
 ## Security
 
-Security is a top priority for Cortex-MCP. We follow industry best practices to protect your credentials and data.
+Security is a top priority for CortexSynapse. We follow industry best practices to protect your credentials and data.
 
 ### Security Features
 
