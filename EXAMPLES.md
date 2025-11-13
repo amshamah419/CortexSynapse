@@ -8,6 +8,45 @@ This document provides practical examples of using Cortex-MCP with AI-powered ID
 - Active XSOAR and/or XSIAM instance with API credentials
 - AI IDE with MCP support enabled
 
+## Tool Documentation Reference
+
+All 213 MCP tools (128 XSIAM + 85 XSOAR) now have comprehensive documentation that includes:
+- **What the tool does**: Clear description of the tool's purpose
+- **What it expects**: Detailed parameter documentation showing name, type, description, and whether it's required or optional
+- **What it returns**: Specific return value descriptions based on the API response
+
+### Example Tool Documentation
+
+Here's an example of the improved documentation for `xsiam_get_incidents`:
+
+```python
+async def xsiam_get_incidents(
+    authorization: str,
+    x_xdr_auth_id: str,
+    request_data: Dict[str, Any] | None = None,
+) -> List[types.TextContent]:
+    """
+    Get a list of incidents filtered by a list of incident IDs, modification time, 
+    or creation time. This includes all incident types and severities, including 
+    correlation-generated incidents.
+    
+    Args:
+        authorization (str): {api_key} (required)
+        x_xdr_auth_id (str): {api_key_id} (required)
+        request_data (Dict[str, Any]): A dictionary containing the API request 
+            fields. An empty dictionary returns all results. (optional)
+    
+    Returns:
+        List[types.TextContent]: Successful response
+    """
+```
+
+### How to Find Tool Documentation
+
+1. **Browse generated files**: Check `server/generated_xsiam_tools.py` or `server/generated_xsoar_tools.py`
+2. **Look for the function name**: Tools are prefixed with `xsiam_` or `xsoar_`
+3. **Read the docstring**: Each tool has a comprehensive docstring with all parameters documented
+
 ## Common Development Workflows
 
 ### Workflow 1: Incident Investigation and Response
@@ -17,9 +56,12 @@ This document provides practical examples of using Cortex-MCP with AI-powered ID
 **Developer to AI**: "Show me all critical incidents from the last 24 hours that involve endpoint 'DESKTOP-12345'"
 
 **What happens**:
-1. AI agent calls `post_get_incidents` with severity and time filters
+1. AI agent calls `xsiam_get_incidents` with the following parameters:
+   - `authorization`: Your API key (required)
+   - `x_xdr_auth_id`: Your API key ID (required)
+   - `request_data`: Dictionary with severity and time filters (optional)
 2. Parses results to find incidents mentioning the endpoint
-3. Optionally calls `post_get_incident_extra_data` for detailed context
+3. Optionally calls `xsiam_get_incident_extra_data` for detailed context
 4. Presents findings in natural language with recommendations
 
 **Result**: You get immediate insight without manually navigating the XSIAM UI or writing API calls.
@@ -32,8 +74,14 @@ This document provides practical examples of using Cortex-MCP with AI-powered ID
 
 **What happens**:
 1. AI agent generates appropriate XQL syntax
-2. Calls `post_start_xql_query` to execute the query
-3. Uses `post_get_query_results` to retrieve results
+2. Calls `xsiam_start_xql_query` with the following parameters:
+   - `authorization`: Your API key (required)
+   - `x_xdr_auth_id`: Your API key ID (required)
+   - `request_data`: Dictionary containing the XQL query (required)
+3. Uses `xsiam_get_query_results` to retrieve results with:
+   - `authorization`: Your API key (required)
+   - `x_xdr_auth_id`: Your API key ID (required)
+   - `request_data`: Dictionary with the query execution ID (required)
 4. Formats and displays findings
 
 **Result**: XQL query development with immediate feedback, no need to context-switch to XSIAM console.
@@ -60,7 +108,8 @@ This document provides practical examples of using Cortex-MCP with AI-powered ID
 
 **What happens**:
 1. AI helps format the script according to XSOAR requirements
-2. Calls `save_or_update_script` to upload the automation
+2. Calls `xsoar_save_or_update_script` to upload the automation
+   - Note: This tool requires no parameters - the script data is provided in the request body
 3. Can trigger script execution within investigation context
 4. Retrieves results for validation
 
@@ -74,9 +123,10 @@ This document provides practical examples of using Cortex-MCP with AI-powered ID
 
 **What happens**:
 1. AI agent formats the IPs appropriately
-2. Calls `save_or_update_indicators` with correct indicator type and malicious verdict
+2. Calls `xsoar_save_or_update_indicators` with correct indicator type and malicious verdict
+   - Parameters are passed in the request body containing indicator details
 3. Confirms successful creation
-4. Optionally queries to verify with `search_indicators`
+4. Optionally queries to verify with `xsoar_search_indicators`
 
 **Result**: Bulk indicator management without tedious UI clicks.
 
@@ -88,24 +138,40 @@ This document provides practical examples of using Cortex-MCP with AI-powered ID
 
 **AI Agent Workflow**:
 ```python
-# Step 1: Query for auth failures
+# Step 1: Query for auth failures using xsiam_start_xql_query
 query = "SELECT source_ip, count() as failures FROM auth_logs WHERE status='failed' AND _time > now() - 1h GROUP BY source_ip"
-query_id = post_start_xql_query(query)
-results = post_get_query_results(query_id)
+query_result = xsiam_start_xql_query(
+    authorization=api_key,
+    x_xdr_auth_id=api_key_id,
+    request_data={"query": query}
+)
 
-# Step 2: Analyze results
+# Step 2: Get results using xsiam_get_query_results
+results = xsiam_get_query_results(
+    authorization=api_key,
+    x_xdr_auth_id=api_key_id,
+    request_data={"execution_id": query_result["execution_id"]}
+)
+
+# Step 3: Analyze results
 if any(result['failures'] > 10 for result in results):
-    # Step 3: Create incident
-    incident = post_create_incident(
-        name="Excessive Authentication Failures Detected",
-        severity="high",
-        description=f"Detected {max_failures} failures from {source_ip}"
+    # Step 4: Create incident using xsiam_update_incident or similar
+    incident = xsiam_create_incident(
+        authorization=api_key,
+        x_xdr_auth_id=api_key_id,
+        request_data={
+            "name": "Excessive Authentication Failures Detected",
+            "severity": "high",
+            "description": f"Detected {max_failures} failures from {source_ip}"
+        }
     )
     
-    # Step 4: Add investigation notes
-    investigation_add_entry_handler(
-        incident_id=incident['id'],
-        entry="XQL query results indicate potential brute force attack"
+    # Step 5: Add investigation notes using xsoar_investigation_add_entry_handler
+    xsoar_investigation_add_entry_handler(
+        request_data={
+            "incident_id": incident['id'],
+            "entry": "XQL query results indicate potential brute force attack"
+        }
     )
 ```
 
@@ -129,8 +195,9 @@ if any(result['failures'] > 10 for result in results):
 
 **AI Agent Actions**:
 ```python
-# Get all scripts
-scripts = get_automation_scripts()
+# Get all scripts using xsoar_get_automation_scripts
+scripts_response = xsoar_get_automation_scripts()
+scripts = scripts_response  # Parse the response
 
 # Filter by pack
 custom_scripts = [s for s in scripts if s.get('pack') == 'CustomIntegrations']
@@ -221,14 +288,26 @@ In Cursor settings (Settings → Features → MCP):
 
 **AI Agent Orchestrates**:
 ```python
-# Get critical incidents
-incidents = post_get_incidents(severity="critical", limit=10)
+# Get critical incidents using xsiam_get_incidents
+incidents = xsiam_get_incidents(
+    authorization=api_key,
+    x_xdr_auth_id=api_key_id,
+    request_data={"severity": "critical", "limit": 10}
+)
 
-# Get high severity alerts  
-alerts = post_public_api_v1_alerts_get_alerts(severity="high", time_range=24)
+# Get high severity alerts using xsiam_alerts_get_alerts_v1
+alerts = xsiam_alerts_get_alerts_v1(
+    authorization=api_key,
+    x_xdr_auth_id=api_key_id,
+    request_data={"severity": "high", "time_range": 24}
+)
 
-# Check for isolated endpoints
-endpoints = post_endpoints_get_endpoint(status="isolated")
+# Check for isolated endpoints using xsiam_endpoints_get_endpoint
+endpoints = xsiam_endpoints_get_endpoint(
+    authorization=api_key,
+    x_xdr_auth_id=api_key_id,
+    request_data={"status": "isolated"}
+)
 
 # Format comprehensive report
 print(f"""
