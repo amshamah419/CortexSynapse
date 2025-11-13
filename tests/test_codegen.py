@@ -619,24 +619,12 @@ def test_openapi_2_ref_resolution():
                 "type": "object",
                 "description": "Filter for searching items",
                 "properties": {
-                    "query": {
-                        "type": "string",
-                        "description": "Search query string"
-                    },
-                    "page": {
-                        "type": "integer",
-                        "description": "Page number"
-                    },
-                    "pageSize": {
-                        "type": "integer",
-                        "description": "Items per page"
-                    },
-                    "sortBy": {
-                        "type": "string",
-                        "description": "Sort field"
-                    }
+                    "query": {"type": "string", "description": "Search query string"},
+                    "page": {"type": "integer", "description": "Page number"},
+                    "pageSize": {"type": "integer", "description": "Items per page"},
+                    "sortBy": {"type": "string", "description": "Sort field"},
                 },
-                "required": ["query"]
+                "required": ["query"],
             }
         },
         "paths": {
@@ -649,19 +637,13 @@ def test_openapi_2_ref_resolution():
                         {
                             "in": "body",
                             "name": "filter",
-                            "schema": {
-                                "$ref": "#/definitions/SearchFilter"
-                            }
+                            "schema": {"$ref": "#/definitions/SearchFilter"},
                         }
                     ],
-                    "responses": {
-                        "200": {
-                            "description": "Search results"
-                        }
-                    }
+                    "responses": {"200": {"description": "Search results"}},
                 }
             }
-        }
+        },
     }
 
     with tempfile.TemporaryDirectory() as tmpdir:
