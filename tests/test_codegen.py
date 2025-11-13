@@ -333,6 +333,34 @@ def test_request_data_expansion():
                                                 "update_data": {
                                                     "type": "object",
                                                     "description": "Data to update",
+                                                    "properties": {
+                                                        "status": {
+                                                            "type": "string",
+                                                            "description": "Incident status",
+                                                        },
+                                                        "severity": {
+                                                            "type": "string",
+                                                            "description": "Incident severity",
+                                                        },
+                                                        "comment": {
+                                                            "type": "object",
+                                                            "description": "Comment object",
+                                                            "required": [
+                                                                "comment_action",
+                                                                "value",
+                                                            ],
+                                                            "properties": {
+                                                                "comment_action": {
+                                                                    "type": "string",
+                                                                    "description": "Action",
+                                                                },
+                                                                "value": {
+                                                                    "type": "string",
+                                                                    "description": "Comment text",
+                                                                },
+                                                            },
+                                                        },
+                                                    },
                                                 },
                                                 "optional_field": {
                                                     "type": "string",
@@ -368,19 +396,31 @@ def test_request_data_expansion():
         assert "request_data: Dict[str, Any]" not in content
         assert "request_data (Dict[str, Any])" not in content
 
-        # Verify that nested properties ARE parameters
+        # Verify that nested properties ARE parameters (top level)
         assert "incident_id: str," in content
-        assert "update_data: Dict[str, Any]," in content
         assert "optional_field: str | None = None," in content
 
-        # Verify documentation shows required/optional correctly
-        assert "incident_id (str): The incident ID (required)" in content
-        assert "update_data (Dict[str, Any]): Data to update (required)" in content
-        assert "optional_field (str): Optional field (optional)" in content
+        # Verify that nested update_data properties are expanded
+        assert "update_data_status: str | None = None," in content
+        assert "update_data_severity: str | None = None," in content
 
-        # Verify the body building code wraps parameters back into request_data
+        # Verify deeply nested comment properties are expanded
+        assert "update_data_comment_comment_action: str," in content
+        assert "update_data_comment_value: str," in content
+
+        # Verify documentation shows the parameters
+        assert "incident_id (str): The incident ID (required)" in content
+        assert "update_data_status (str): Incident status (optional)" in content
+        assert "update_data_comment_comment_action (str): Action (required)" in content
+        assert "update_data_comment_value (str): Comment text (required)" in content
+
+        # Verify the body building code handles nested structures
         assert "request_data_obj = {}" in content
         assert 'request_data_obj["incident_id"] = incident_id' in content
-        assert 'request_data_obj["update_data"] = update_data' in content
-        assert 'request_data_obj["optional_field"] = optional_field' in content
-        assert 'body["request_data"] = request_data_obj' in content
+
+        # Verify nested object building
+        assert "update_data_obj = {}" in content
+        assert 'update_data_obj["status"] = update_data_status' in content
+        assert "comment_obj = {}" in content
+        assert 'comment_obj["comment_action"] = update_data_comment_comment_action' in content
+        assert 'comment_obj["value"] = update_data_comment_value' in content

@@ -103,6 +103,8 @@ def to_snake_case(name: str, http_method: str = "") -> str:
     name = clean_public_api_name(name)
     # Replace hyphens with underscores first
     name = name.replace("-", "_")
+    # Remove angle brackets and other special characters that aren't valid in Python identifiers
+    name = re.sub(r"[<>]", "", name)
     # Insert underscore before uppercase letters and convert to lowercase
     s1 = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", name)
     return re.sub("([a-z0-9])([A-Z])", r"\1_\2", s1).lower()
@@ -133,7 +135,138 @@ def get_parameter_type(param_schema: Dict[str, Any]) -> str:
         "object": "Dict[str, Any]",
     }
     param_type = param_schema.get("type", "string")
+
+    # Handle case where type might be a list or None (e.g., enum fields without explicit type)
+    if isinstance(param_type, list):
+        # If type is a list, use the first non-null type
+        param_type = next((t for t in param_type if t != "null"), "string")
+    elif param_type is None or param_type == "":
+        # If no type specified but has enum, it's likely a string
+        if "enum" in param_schema:
+            param_type = "string"
+        else:
+            param_type = "string"
+
     return type_mapping.get(param_type, "Any")
+
+
+def generate_nested_assignments(
+    properties: Dict[str, Any],
+    target_var: str = "current_obj",
+    prefix: str = "",
+    indent: str = "    ",
+) -> List[str]:
+    """
+    Generate code lines to assign flat parameters to a nested object structure.
+
+    Args:
+        properties: The properties dictionary from the schema
+        target_var: The variable name to assign to
+        prefix: Prefix for parameter names
+        indent: Indentation string
+
+    Returns:
+        List of code lines
+    """
+    lines = []
+
+    for prop_name, prop_schema in properties.items():
+        snake_prop = to_snake_case(prop_name)
+        full_param_name = f"{prefix}{snake_prop}" if prefix else snake_prop
+        prop_type = prop_schema.get("type")
+        nested_properties = prop_schema.get("properties", {})
+
+        # If this is an object with properties, build it recursively
+        if prop_type == "object" and nested_properties:
+            nested_var = f"{snake_prop}_obj"
+            lines.append(f"{indent}# Build {prop_name} nested object")
+            lines.append(f"{indent}{nested_var} = {{}}")
+
+            # Recursively generate assignments for nested properties
+            nested_lines = generate_nested_assignments(
+                nested_properties,
+                target_var=nested_var,
+                prefix=f"{full_param_name}_",
+                indent=indent,
+            )
+            lines.extend(nested_lines)
+
+            lines.append(f"{indent}if {nested_var}:")
+            lines.append(f'{indent}    {target_var}["{prop_name}"] = {nested_var}')
+        else:
+            # Leaf node - add assignment
+            lines.append(f"{indent}if {full_param_name} is not None:")
+            lines.append(f'{indent}    {target_var}["{prop_name}"] = {full_param_name}')
+
+    return lines
+
+
+def expand_nested_properties(
+    properties: Dict[str, Any],
+    required_props: List[str],
+    param_defs_required: List[str],
+    param_defs_optional: List[str],
+    schema_props: List[str],
+    param_info: List[Dict[str, Any]],
+    prefix: str = "",
+) -> None:
+    """
+    Recursively expand nested object properties into individual parameters.
+
+    Args:
+        properties: The properties dictionary from the schema
+        required_props: List of required property names
+        param_defs_required: List to append required parameter definitions to
+        param_defs_optional: List to append optional parameter definitions to
+        schema_props: List to append schema property definitions to
+        param_info: List to append parameter info dictionaries to
+        prefix: Prefix for nested property names (e.g., "update_data_")
+    """
+    for prop_name, prop_schema in properties.items():
+        snake_prop = to_snake_case(prop_name)
+        full_param_name = f"{prefix}{snake_prop}" if prefix else snake_prop
+        prop_type = prop_schema.get("type")
+        prop_desc = clean_description(prop_schema.get("description", ""))
+        is_required = prop_name in required_props
+
+        # If this is an object with properties, expand it recursively
+        # But only if it has defined properties (not a free-form object)
+        nested_properties = prop_schema.get("properties", {})
+        if prop_type == "object" and nested_properties:
+            nested_required = prop_schema.get("required", [])
+            expand_nested_properties(
+                nested_properties,
+                nested_required,
+                param_defs_required,
+                param_defs_optional,
+                schema_props,
+                param_info,
+                prefix=f"{full_param_name}_",
+            )
+        else:
+            # Leaf node - add as a parameter
+            param_type = get_parameter_type(prop_schema)
+
+            if is_required:
+                param_defs_required.append(f"    {full_param_name}: {param_type},")
+            else:
+                param_defs_optional.append(f"    {full_param_name}: {param_type} | None = None,")
+
+            schema_props.append(
+                f'        "{full_param_name}": {{"type": "{param_type}", "description": "{prop_desc}"}},'
+            )
+
+            param_info.append(
+                {
+                    "name": full_param_name,
+                    "type": param_type,
+                    "required": is_required,
+                    "description": prop_desc if prop_desc else "No description provided",
+                    "location": "body",
+                    "original_name": prop_name,
+                    "prefix": prefix,
+                }
+            )
 
 
 def generate_parameter_schema(
@@ -192,7 +325,7 @@ def generate_parameter_schema(
 
             # Check if this is a request_data wrapper pattern
             # If there's only one property named "request_data" that is an object,
-            # expand its nested properties instead
+            # expand its nested properties instead (recursively)
             if (
                 len(properties) == 1
                 and "request_data" in properties
@@ -202,31 +335,16 @@ def generate_parameter_schema(
                 nested_properties = request_data_schema.get("properties", {})
                 nested_required = request_data_schema.get("required", [])
 
-                for prop_name, prop_schema in nested_properties.items():
-                    snake_prop = to_snake_case(prop_name)
-                    prop_type = get_parameter_type(prop_schema)
-                    prop_desc = clean_description(prop_schema.get("description", ""))
-                    is_required = prop_name in nested_required
-
-                    if is_required:
-                        required_param_defs.append(f"    {snake_prop}: {prop_type},")
-                    else:
-                        optional_param_defs.append(f"    {snake_prop}: {prop_type} | None = None,")
-
-                    schema_props.append(
-                        f'        "{snake_prop}": {{"type": "{prop_type}", "description": "{prop_desc}"}},'
-                    )
-
-                    # Add to param_info for docstring
-                    param_info.append(
-                        {
-                            "name": snake_prop,
-                            "type": prop_type,
-                            "required": is_required,
-                            "description": prop_desc if prop_desc else "No description provided",
-                            "location": "body",
-                        }
-                    )
+                # Use recursive expansion to handle nested objects
+                expand_nested_properties(
+                    nested_properties,
+                    nested_required,
+                    required_param_defs,
+                    optional_param_defs,
+                    schema_props,
+                    param_info,
+                    prefix="",
+                )
             else:
                 # Regular request body processing (no request_data wrapper)
                 for prop_name, prop_schema in properties.items():
@@ -382,15 +500,19 @@ async def {tool_name}(
                 request_data_schema = properties["request_data"]
                 nested_properties = request_data_schema.get("properties", {})
 
-                # Build the request_data object from expanded parameters
+                # Build the request_data object from expanded parameters (recursively)
                 function_code += """    # Build request_data object from parameters
     request_data_obj = {}
 """
-                for prop_name in nested_properties.keys():
-                    snake_prop = to_snake_case(prop_name)
-                    function_code += f"""    if {snake_prop} is not None:
-        request_data_obj["{prop_name}"] = {snake_prop}
-"""
+                # Generate nested assignment code
+                assignment_lines = generate_nested_assignments(
+                    nested_properties,
+                    target_var="request_data_obj",
+                    prefix="",
+                    indent="    ",
+                )
+                function_code += "\n".join(assignment_lines) + "\n"
+
                 function_code += """    if request_data_obj:
         body["request_data"] = request_data_obj
 """
