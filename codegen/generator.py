@@ -12,6 +12,38 @@ from typing import Any, Dict, List
 import yaml
 
 
+def resolve_ref(ref: str, spec: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Resolve a $ref reference to its definition in the spec.
+    
+    Supports both OpenAPI 3.0 (#/components/schemas/...) and OpenAPI 2.0 (#/definitions/...) formats.
+    
+    Args:
+        ref: The $ref string (e.g., "#/definitions/automationScriptFilter" or "#/components/schemas/MySchema")
+        spec: The full OpenAPI specification
+        
+    Returns:
+        The resolved schema object
+        
+    Raises:
+        ValueError: If the reference cannot be resolved
+    """
+    if not ref.startswith("#/"):
+        raise ValueError(f"Only local references are supported, got: {ref}")
+    
+    # Split the reference path and navigate through the spec
+    # Example: "#/definitions/automationScriptFilter" -> ["", "definitions", "automationScriptFilter"]
+    parts = ref.split("/")[1:]  # Skip the leading "#"
+    
+    result = spec
+    for part in parts:
+        if part not in result:
+            raise ValueError(f"Reference {ref} not found in spec at part: {part}")
+        result = result[part]
+    
+    return result
+
+
 def strip_http_verb_prefix(name: str, http_method: str = "") -> str:
     """
     Strip HTTP verb prefix from operation ID if it matches the actual HTTP method.
@@ -383,7 +415,9 @@ def expand_nested_properties(
 
 
 def generate_parameter_schema(
-    parameters: List[Dict[str, Any]], request_body: Dict[str, Any] | None = None
+    parameters: List[Dict[str, Any]], 
+    request_body: Dict[str, Any] | None = None,
+    spec: Dict[str, Any] | None = None
 ) -> tuple[List[str], List[str], List[Dict[str, Any]]]:
     """Generate parameter definitions, schema properties, and parameter info for documentation."""
     required_param_defs = []
@@ -391,11 +425,62 @@ def generate_parameter_schema(
     schema_props = []
     param_info = []  # For docstring generation
 
-    # Process query, path, and header parameters (skip body/formData - handled differently)
+    # Process query, path, and header parameters
+    # For OpenAPI 2.0, also handle body parameters with $ref
     for param in parameters:
         param_in = param.get("in", "query")
-        if param_in in ["body", "formData"]:
-            # Body and formData parameters are handled differently
+        
+        # Handle OpenAPI 2.0 body parameters with $ref
+        if param_in == "body" and "schema" in param:
+            schema = param["schema"]
+            
+            # Check if this is a $ref to a definition
+            if "$ref" in schema and spec:
+                try:
+                    # Resolve the $ref to get the actual schema
+                    resolved_schema = resolve_ref(schema["$ref"], spec)
+                    properties = resolved_schema.get("properties", {})
+                    required_props = resolved_schema.get("required", [])
+                    
+                    # Expand the properties from the resolved definition
+                    for prop_name, prop_schema in properties.items():
+                        snake_prop = to_snake_case(prop_name)
+                        prop_type = get_parameter_type(prop_schema)
+                        prop_desc = clean_description(prop_schema.get("description", ""))
+                        is_required = prop_name in required_props
+                        
+                        # Sanitize to avoid Python reserved keywords
+                        param_name = sanitize_python_identifier(snake_prop, prop_name)
+                        
+                        if is_required:
+                            required_param_defs.append(f"    {param_name}: {prop_type},")
+                        else:
+                            optional_param_defs.append(f"    {param_name}: {prop_type} | None = None,")
+                        
+                        schema_props.append(
+                            f'        "{param_name}": {{"type": "{prop_type}", "description": "{prop_desc}"}},'
+                        )
+                        
+                        # Add to param_info for docstring
+                        param_info.append(
+                            {
+                                "name": param_name,
+                                "type": prop_type,
+                                "required": is_required,
+                                "description": prop_desc if prop_desc else "No description provided",
+                                "location": "body",
+                                "original_name": prop_name,
+                            }
+                        )
+                except ValueError as e:
+                    # If we can't resolve the ref, skip this parameter
+                    print(f"Warning: Could not resolve $ref {schema.get('$ref')}: {e}")
+            
+            # Skip further processing of body parameters
+            continue
+        
+        if param_in in ["formData"]:
+            # formData parameters are handled differently
             # For OpenAPI 2.0 compatibility, skip them here
             continue
 
@@ -515,6 +600,7 @@ def generate_tool_function(
     operation: Dict[str, Any],
     base_url: str,
     service_prefix: str = "",
+    spec: Dict[str, Any] | None = None,
 ) -> str:
     """Generate a single tool function from an OpenAPI operation."""
     tool_name = to_snake_case(operation_id, method)
@@ -528,7 +614,7 @@ def generate_tool_function(
     parameters = operation.get("parameters", [])
     request_body = operation.get("requestBody")
 
-    param_defs, schema_props, param_info = generate_parameter_schema(parameters, request_body)
+    param_defs, schema_props, param_info = generate_parameter_schema(parameters, request_body, spec)
 
     # Build function signature
     param_str = "\n".join(param_defs) if param_defs else ""
@@ -589,12 +675,38 @@ async def {tool_name}(
 '''
 
     # Add parameter building logic
+    # First, handle OpenAPI 2.0 body parameters with $ref
+    for param in parameters:
+        param_in = param.get("in", "query")
+        
+        if param_in == "body" and "schema" in param:
+            schema = param["schema"]
+            
+            # Check if this is a $ref to a definition
+            if "$ref" in schema and spec:
+                try:
+                    # Resolve the $ref to get the actual schema
+                    resolved_schema = resolve_ref(schema["$ref"], spec)
+                    properties = resolved_schema.get("properties", {})
+                    
+                    # Build body from the resolved definition's properties
+                    for prop_name in properties.keys():
+                        snake_prop = to_snake_case(prop_name)
+                        param_name = sanitize_python_identifier(snake_prop, prop_name)
+                        function_code += f"""    if {param_name} is not None:
+        body["{prop_name}"] = {param_name}
+"""
+                except ValueError:
+                    # If we can't resolve the ref, skip
+                    pass
+    
+    # Then handle query, path, and header parameters
     for param in parameters:
         original_name = param["name"]
         param_name = to_snake_case(original_name)
         param_in = param.get("in", "query")
 
-        # Skip body and formData parameters - they're handled differently
+        # Skip body and formData parameters - they're handled above or separately
         if param_in in ["body", "formData"]:
             continue
 
@@ -868,6 +980,7 @@ def set_server(s: Server) -> None:
                         operation,
                         base_url,
                         spec_name,  # Pass the service name as prefix
+                        spec,  # Pass the spec for $ref resolution
                     )
                     file_content += tool_code
 

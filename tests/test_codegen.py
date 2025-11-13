@@ -1,5 +1,6 @@
 """Tests for the code generator."""
 
+import json
 import tempfile
 from pathlib import Path
 
@@ -602,3 +603,98 @@ def test_reserved_keyword_handling():
         assert "from: int" not in content
         assert "to: int" not in content
         assert "for: str" not in content
+
+
+def test_openapi_2_ref_resolution():
+    """Test that OpenAPI 2.0 $ref references to definitions are properly resolved."""
+    # Create an OpenAPI 2.0 (Swagger) spec with $ref like XSOAR
+    spec = {
+        "swagger": "2.0",
+        "info": {"title": "Test API", "version": "1.0.0"},
+        "host": "api.test.com",
+        "basePath": "/",
+        "schemes": ["https"],
+        "definitions": {
+            "SearchFilter": {
+                "type": "object",
+                "description": "Filter for searching items",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "Search query string"
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Page number"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "description": "Items per page"
+                    },
+                    "sortBy": {
+                        "type": "string",
+                        "description": "Sort field"
+                    }
+                },
+                "required": ["query"]
+            }
+        },
+        "paths": {
+            "/items/search": {
+                "post": {
+                    "operationId": "searchItems",
+                    "summary": "Search items",
+                    "description": "Search for items using a filter",
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "filter",
+                            "schema": {
+                                "$ref": "#/definitions/SearchFilter"
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Search results"
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        spec_path = Path(tmpdir) / "test.json"
+        output_dir = Path(tmpdir) / "output"
+        output_dir.mkdir()
+
+        # Write the spec as JSON
+        with open(spec_path, "w") as f:
+            json.dump(spec, f)
+
+        generate_tools_file(spec_path, output_dir)
+
+        output_file = output_dir / "generated_test_tools.py"
+        content = output_file.read_text()
+
+        # Verify that the $ref was resolved and properties are now parameters
+        assert "query: str," in content
+        assert "page: int | None = None," in content
+        assert "page_size: int | None = None," in content  # pageSize -> page_size
+        assert "sort_by: str | None = None," in content  # sortBy -> sort_by
+
+        # Verify parameter documentation
+        assert "query (str): Search query string (required)" in content
+        assert "page (int): Page number (optional)" in content
+        assert "page_size (int): Items per page (optional)" in content
+        assert "sort_by (str): Sort field (optional)" in content
+
+        # Verify body building code uses original property names
+        assert 'body["query"] = query' in content
+        assert 'body["page"] = page' in content
+        assert 'body["pageSize"] = page_size' in content
+        assert 'body["sortBy"] = sort_by' in content
+
+        # Verify that we don't have a generic body parameter
+        assert "filter: Dict[str, Any]" not in content
